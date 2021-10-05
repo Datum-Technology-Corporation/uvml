@@ -1,4 +1,4 @@
-# Moore.io Core IP
+# Moore.io UVM Extensions
 
 # About
-Moore.io's collection of RTL, DV & EDApp IP common to almost all Digital Design projects.
+Moore.io's collection of extensions and additions to UVM.
