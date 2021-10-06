@@ -173,7 +173,7 @@ def do_cmp_dv(filelist_path, lib_name):
     print("\033[0;36m************")
     print("Compiling DV")
     print("************\033[0m")
-    if not os.path.exists(pwd + "/results")
+    if not os.path.exists(pwd + "/results"):
         os.mkdir(pwd + "/results")
     compilation_log_path = pwd + "/results/" + lib_name + ".cmp.log"
     add_cmp_to_history_log(lib_name, compilation_log_path)
