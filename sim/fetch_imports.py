@@ -19,15 +19,11 @@
 ########################################################################################################################
 
 
-
-
 ########################################################################################################################
 # DEPENDENCIES
 ########################################################################################################################
 import os
 import shutil
-
-
 
 
 ########################################################################################################################
@@ -43,7 +39,6 @@ dv_imports_path    = dv_path + "/.imports"
 tools_path         = project_dir + "/tools"
 tools_imports_path = tools_path + "/.imports"
 
-
 def main():
     print("Fetching project dependencies ...")
     print("No dependencies for this target")
@@ -51,8 +46,6 @@ def main():
     #clone_repo_dv_to_imports("https://github.com/Datum-Technology-Corporation/uvml_logs.git", "main", "uvml_logs")
     #clone_repo_dv_to_imports("https://github.com/Datum-Technology-Corporation/uvml_sb.git"  , "main", "uvml_sb"  )
     #clone_repo_dv_to_imports("https://github.com/Datum-Technology-Corporation/uvml_ral.git" , "main", "uvml_ral" )
-
-
 
 
 ########################################################################################################################
@@ -67,7 +60,6 @@ def copy_tree(src, dst, symlinks=False, ignore=None):
         else:
             shutil.copy2(s, d)
 
-
 def clone_repo_dv_to_imports(uri, branch, dv_ip_name):
     dst_path = dv_imports_path + "/" + dv_ip_name
     
@@ -81,8 +73,6 @@ def clone_repo_dv_to_imports(uri, branch, dv_ip_name):
     subprocess.call("git clone -q --branch " + branch + " " + uri + " " + temp_path, shell=True)
     copy_tree(temp_path + "/dv/" + dv_ip_name, dst_path)
     shutil.rmtree(temp_path)
-
-
 
 
 ########################################################################################################################

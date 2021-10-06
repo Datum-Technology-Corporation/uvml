@@ -61,7 +61,7 @@ sim_waves       = True
 
 pwd               = os.getcwd()
 temp_path         = pwd + '/temp'
-vivado_path       = '/tools/vivado/2021.1/Vivado/2021.1/bin/'
+vivado_path       = os.getenv("VIVADO", '/tools/vivado/2021.1/Vivado/2021.1/bin/')
 uvm_dpi_so        = "uvm_dpi"
 project_dir       = pwd + "/.."
 rtl_path          = project_dir + "/rtl"
@@ -86,12 +86,6 @@ def do_dispatch(args):
     
     if not args['<seed>']:
         args['<seed>'] = 1
-    
-    if args['update']:
-        args['clean'] = False
-        args['cmp'  ] = False
-        args['elab' ] = False
-        args['sim'  ] = False
     
     if args['results']:
         args['clean'] = False
@@ -144,8 +138,6 @@ def do_dispatch(args):
         do_elab(args['<target>'], args['<target>'] + "_tb")
     if args['sim']:
         do_sim(args['<target>'], args['<test_name>'], args['<seed>'], [])
-    if args['update']:
-        get_dependencies.do_update()
     if args['results']:
         do_parse_results(args['<target>'], args['<filename>'])
 
