@@ -46,7 +46,6 @@ from docopt     import docopt
 import os
 import subprocess
 import shutil
-import get_dependencies
 import yaml
 from datetime import datetime
 from yaml.loader import SafeLoader
