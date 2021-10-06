@@ -1,5 +1,5 @@
 # About
-Moore.io UVM extensions and core additions
+Moore.io UVM Extensions Library
 
 # [Home Page](https://datum-technology-corporation.github.io/uvml/)
 
@@ -15,4 +15,3 @@ None
 
 ## Tools
 * dvm
-* reg_gen

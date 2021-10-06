@@ -15,29 +15,29 @@
 """Design Verification \'Makefile\'.
 
 Usage:
-  dvm.py all  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-d | --debug]  [-w | --waves] [-q | --noclean]
-  dvm.py cmp  <target>
-  dvm.py elab <target>  [-d | --debug]
-  dvm.py cpel <target>
-  dvm.py sim  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]
-  dvm.py clean
-  dvm.py results  <target> <filename>
-  dvm.py (-h | --help)
-  dvm.py --version
+  dvm all  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-d | --debug]  [-w | --waves] [-q | --noclean]
+  dvm cmp  <target>
+  dvm elab <target>  [-d | --debug]
+  dvm cpel <target>
+  dvm sim  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]
+  dvm clean
+  dvm results  <target> <filename>
+  dvm (-h | --help)
+  dvm --version
 
 Options:
   -h --help     Show this screen.
   --version     Show version.
    
 Examples:
-  dvm.py clean                          # Deletes all simulation artifacts and results
+  dvm clean                          # Deletes all simulation artifacts and results
   
-  dvm.py cmp  uvmt_my_ip                # Only compile test bench for uvmt_my_ip
-  dvm.py elab uvmt_my_ip                # Only elaborate test bench for uvmt_my_ip
-  dvm.py cpel uvmt_my_ip                # Compile and elaborate test bench for uvmt_my_ip
-  dvm.py sim  uvmt_my_ip -t smoke -s 1  # Only simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
+  dvm cmp  uvmt_my_ip                # Only compile test bench for uvmt_my_ip
+  dvm elab uvmt_my_ip                # Only elaborate test bench for uvmt_my_ip
+  dvm cpel uvmt_my_ip                # Compile and elaborate test bench for uvmt_my_ip
+  dvm sim  uvmt_my_ip -t smoke -s 1  # Only simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
   
-  dvm.py all uvmt_my_ip -t smoke -s 1   # Compiles, elaborates and simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
+  dvm all uvmt_my_ip -t smoke -s 1   # Compiles, elaborates and simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
 """
 
 
