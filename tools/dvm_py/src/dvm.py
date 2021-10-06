@@ -81,7 +81,6 @@ def do_dispatch(args):
     
     if (dbg):
         print("Call to do_dispatch()")
-    get_dependencies.do_paths()
     
     if not args['<seed>']:
         args['<seed>'] = 1
