@@ -6,6 +6,4 @@
 *.jou
 /*.wdb
 /out/
-results/*/*
-results/*
 history.yaml
