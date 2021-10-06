@@ -173,6 +173,8 @@ def do_cmp_dv(filelist_path, lib_name):
     print("\033[0;36m************")
     print("Compiling DV")
     print("************\033[0m")
+    if not os.path.exists(pwd + "/results")
+        os.mkdir(pwd + "/results")
     compilation_log_path = pwd + "/results/" + lib_name + ".cmp.log"
     add_cmp_to_history_log(lib_name, compilation_log_path)
     run_xsim_bin("xvlog", "--incr -sv -f " + filelist_path + " -L uvm --work " + lib_name + "=./out/" + lib_name + " --log " + compilation_log_path)
