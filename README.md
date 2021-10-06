@@ -14,4 +14,5 @@ Moore.io UVM extensions and core additions
 None
 
 ## Tools
-None
+* dvm
+* reg_gen

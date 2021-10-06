@@ -31,7 +31,6 @@ import shutil
 ########################################################################################################################
 pwd                = os.getcwd()
 project_dir        = pwd + "/.."
-project_dir        = pwd + "/temp"
 rtl_path           = project_dir + "/rtl"
 rtl_libs_path      = rtl_path + "/.imports"
 dv_path            = project_dir + "/dv"

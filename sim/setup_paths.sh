@@ -26,6 +26,7 @@ export PROJECT_TOOLS_IMPORT_DIR=${PROJECT_TOOLS_DIR}/.imports
 
 ### Tools ###
 # Local
+export TOOLS_DVM_SRC_PATH=${PROJECT_TOOLS_DIR}/dvm/src
 # Imports
 
 
@@ -53,3 +54,6 @@ export DV_UVMT_RESET_ST_SRC_PATH=${PROJECT_DV_IMPORTS_DIR}/uvmt_reset/src
 export DV_UVMA_CLK_SRC_PATH=${PROJECT_DV_IMPORTS_DIR}/uvma_clk/src
 export DV_UVME_CLK_ST_SRC_PATH=${PROJECT_DV_IMPORTS_DIR}/uvme_clk/src
 export DV_UVMT_CLK_ST_SRC_PATH=${PROJECT_DV_IMPORTS_DIR}/uvmt_clk/src
+
+# PATH
+export PATH=${PATH}:${TOOLS_DVM_SRC_PATH}
