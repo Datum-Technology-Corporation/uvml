@@ -21,7 +21,6 @@ Usage:
   dvm.py cpel <target>
   dvm.py sim  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]
   dvm.py clean
-  dvm.py update
   dvm.py results  <target> <filename>
   dvm.py (-h | --help)
   dvm.py --version
@@ -31,14 +30,14 @@ Options:
   --version     Show version.
    
 Examples:
-  dvm.py update                                    # Download latest versions of DV libs from github
+  dvm.py clean                          # Deletes all simulation artifacts and results
   
-  dvm.py cmp  uvmt_lp_nnp                          # Only compile test bench for lp_nnp
-  dvm.py elab uvmt_lp_nnp                          # Only elaborate test bench for lp_nnp
-  dvm.py cpel uvmt_lp_nnp                          # Compile and elaborate test bench for lp_nnp
-  dvm.py sim  uvmt_lp_nnp -t vector_playback -s 1  # Only simulates test bench for lp_nnp
+  dvm.py cmp  uvmt_my_ip                # Only compile test bench for uvmt_my_ip
+  dvm.py elab uvmt_my_ip                # Only elaborate test bench for uvmt_my_ip
+  dvm.py cpel uvmt_my_ip                # Compile and elaborate test bench for uvmt_my_ip
+  dvm.py sim  uvmt_my_ip -t smoke -s 1  # Only simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
   
-  dvm.py all uvmt_lp_nnp -t vector_playback -s 1   # Compiles, elaborates and simulates test bench for lp_nnp
+  dvm.py all uvmt_my_ip -t smoke -s 1   # Compiles, elaborates and simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
 """
 
 
@@ -423,22 +422,6 @@ def sim_parse_sim_results(sim_log_path, testcase):
                 test_result = "failed"
     
     return test_result
-
-
-def clone_repo_dv_to_imports(uri, branch, dv_ip_name):
-    dst_path = dv_imports_path + "/" + dv_ip_name
-    
-    if not os.path.exists(dv_imports_path):
-        os.mkdir(dv_imports_path)
-    if os.path.exists(temp_path):
-        shutil.rmtree(temp_path)
-    if os.path.exists(dst_path):
-        shutil.rmtree(dst_path)
-    else:
-        os.mkdir(dst_path)
-    subprocess.call("git clone -q --branch " + branch + " " + uri + " " + temp_path, shell=True)
-    copy_tree(temp_path + "/dv/" + dv_ip_name, dst_path)
-    shutil.rmtree(temp_path)
 
 
 def copy_tree(src, dst, symlinks=False, ignore=None):
