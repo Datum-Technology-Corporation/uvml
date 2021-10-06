@@ -13,7 +13,7 @@
 
 
 ### Project ###
-export PROJECT_ROOT_DIR=$(pwd)
+export PROJECT_ROOT_DIR=$(pwd)/..
 export PROJECT_DV_DIR=${PROJECT_ROOT_DIR}/dv
 export PROJECT_DV_IMPORTS_DIR=${PROJECT_DV_DIR}/.imports
 export PROJECT_RTL_DIR=${PROJECT_ROOT_DIR}/rtl
