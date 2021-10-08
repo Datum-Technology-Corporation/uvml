@@ -4,7 +4,7 @@ The Moore.io UVM Extensions Library implements features vital to any modern UVM-
 # IP
 * [Download latest release (.tgz)](Todo)
 * [View latest documentation](Todo)
-* [Browse code](https://github.com/Datum-Technology-Corporation/uvml)
+* [Browse code](https://github.com/Datum-Technology-Corporation/uvml/tree/main/dv/uvml)
 
 # Metrics
 ## Stability
