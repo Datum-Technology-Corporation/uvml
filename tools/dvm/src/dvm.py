@@ -269,7 +269,7 @@ def add_elab_to_history_log(snapshot, elaboration_log_path):
     now = datetime.now()
     timestamp = now.strftime("%Y/%m/%d-%H:%M:%S")
     if not os.path.exists(history_file_path):
-        create_history_log(snapshot, "")
+        create_history_log()
     with open(history_file_path,'r') as yamlfile:
         cur_yaml = yaml.load(yamlfile, Loader=SafeLoader) # Note the safe_load
         if not snapshot in cur_yaml:
@@ -285,7 +285,7 @@ def add_cmp_to_history_log(snapshot, compilation_log_path):
     now = datetime.now()
     timestamp = now.strftime("%Y/%m/%d-%H:%M:%S")
     if not os.path.exists(history_file_path):
-        create_history_log(snapshot)
+        create_history_log()
     with open(history_file_path,'r') as yamlfile:
         cur_yaml = yaml.load(yamlfile, Loader=SafeLoader) # Note the safe_load
         if not snapshot in cur_yaml:
