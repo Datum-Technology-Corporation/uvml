@@ -1,5 +1,5 @@
 # About
-The Moore.io UVM Extensions Library implements features vital to any modern UVM-based IP.
+The Moore.io UVM Extensions Library is *the* must-have library in all your digital design simulations.  This project consists of the library (`uvml_pkg`), the self-testing agent (`uvma_st_pkg`), the self-testing UVM environment (`uvme_st_pkg`) and the test bench (`uvmt_st_pkg`) to verify the library against itself.
 
 # IP
 * [Download latest release (.tgz)](Todo)
