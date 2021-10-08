@@ -15,11 +15,11 @@
 """Design Verification \'Makefile\'.
 
 Usage:
-  dvm all  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-d | --debug]  [-w | --waves] [-q | --noclean]
+  dvm all  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-d | --debug]  [-w | --waves]  [-q | --noclean]  [-c | --cov]
   dvm cmp  <target>
   dvm elab <target>  [-d | --debug]
   dvm cpel <target>
-  dvm sim  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]
+  dvm sim  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]  [-c | --cov]
   dvm clean
   dvm results  <target> <filename>
   dvm (-h | --help)
@@ -35,7 +35,7 @@ Examples:
   dvm cmp  uvmt_my_ip                # Only compile test bench for uvmt_my_ip
   dvm elab uvmt_my_ip                # Only elaborate test bench for uvmt_my_ip
   dvm cpel uvmt_my_ip                # Compile and elaborate test bench for uvmt_my_ip
-  dvm sim  uvmt_my_ip -t smoke -s 1  # Only simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
+  dvm sim  uvmt_my_ip -t smoke -s 1  # Only simulates test 'uvmt_my_ip_smoke_test_c' for top-level module 'uvmt_my_ip_tb'
   
   dvm all uvmt_my_ip -t smoke -s 1   # Compiles, elaborates and simulates test 'uvmt_my_ip_smoke_test_c' for bench 'uvmt_my_ip'
 """
@@ -360,7 +360,7 @@ def do_parse_results(snapshot, filename):
     testsuites.set('name', snapshot)
     testsuite = ET.SubElement(testsuites, "testsuite")
     testsuite.set('id', snapshot + "_" + timestamp)
-    testsuite.set('name', snapshot)
+    testsuite.set('name', "functional")
     print("Parsing results ...")
     if not os.path.exists(history_file_path):
         sys.exit("No history log file")
