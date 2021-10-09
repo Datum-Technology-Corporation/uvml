@@ -8,3 +8,6 @@
 /out/
 history.yaml
 results/*
+/results.xml
+/xsim.covdb/
+/cov_report/
