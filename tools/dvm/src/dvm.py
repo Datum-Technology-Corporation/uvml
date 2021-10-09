@@ -22,6 +22,7 @@ Usage:
   dvm sim  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]  [-c | --cov]
   dvm clean
   dvm results  <target> <filename>
+  dvm cov      <target>
   dvm (-h | --help)
   dvm --version
 
@@ -140,6 +141,8 @@ def do_dispatch(args):
         do_sim(args['<target>'], args['<test_name>'], args['<seed>'], [])
     if args['results']:
         do_parse_results(args['<target>'], args['<filename>'])
+    if args['cov']:
+        gen_cov_report(args['<target>'])
 
 
 def set_env_var(name, value):
@@ -385,10 +388,10 @@ def do_parse_results(snapshot, filename):
     now = datetime.now()
     timestamp = now.strftime("%Y/%m/%d-%H:%M:%S")
     testsuites = ET.Element("testsuites")
-    testsuites.set(timestamp)
+    testsuites.set('id', timestamp)
     testsuites.set('name', snapshot)
     testsuite = ET.SubElement(testsuites, "testsuite")
-    testsuite.set(timestamp)
+    testsuite.set('id', timestamp)
     testsuite.set('name', "functional")
     print("Parsing results ...")
     if not os.path.exists(history_file_path):
@@ -405,6 +408,10 @@ def do_parse_results(snapshot, filename):
                     testcase.set('id', snapshot + "." + cur_yaml[snapshot]['simulations'][sim]['test_name'])
                     testcase.set('name', cur_yaml[snapshot]['simulations'][sim]['test_name'])
                     #testcase.set('args', cur_yaml[snapshot]['simulations'][sim]['args'])
+                    args = ET.SubElement(testcase, "args")
+                    for arg in cur_yaml[snapshot]['simulations'][sim]['args']:
+                        arg_e = ET.SubElement(args, "arg")
+                        arg_e.text = arg
                     testcase.set('seed', str(cur_yaml[snapshot]['simulations'][sim]['seed']))
                     testcase.set('time', str(duration))
                     passed = sim_parse_sim_results(sim_log_path, testcase)
@@ -458,7 +465,25 @@ def sim_parse_sim_results(sim_log_path, testcase):
 
 
 def gen_cov_report(sim_lib):
-    print("TODO")
+    print("Generating coverage report for " + sim_lib)
+    dir_string = ""
+    now = datetime.now()
+    timestamp = now.strftime("%Y/%m/%d-%H:%M:%S")
+    print("Parsing results ...")
+    if not os.path.exists(history_file_path):
+        sys.exit("No history log file")
+    else:
+        with open(history_file_path,'r') as yamlfile:
+            cur_yaml = yaml.load(yamlfile, Loader=SafeLoader)
+            if cur_yaml:
+                for sim in cur_yaml[sim_lib]['simulations']:
+                    cov_path = sim + "/cov/xsim.covdb"
+                    dir_string = dir_string + " -dir " + cov_path
+    
+    #run_xsim_bin("xcrg", dir_string + " -merge_dir " + pwd + "/cov_merge/" + sim_lib + " -merge_db_name " + sim_lib)
+    if not os.path.exists(pwd + "/cov_report"):
+        os.mkdir(pwd + "/cov_report")
+    run_xsim_bin("xcrg", dir_string + " -report_format all -report_dir " + pwd + "/cov_report/" + sim_lib)
 
 
 def copy_tree(src, dst, symlinks=False, ignore=None):
