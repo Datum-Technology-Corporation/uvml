@@ -15,7 +15,7 @@
 """Design Verification \'Makefile\'.
 
 Usage:
-  dvm all  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-d | --debug]  [-w | --waves]  [-q | --noclean]  [-c | --cov]
+  dvm all  <target>  [-t <test_name>]  [-s <seed>]  [-g | --gui]  [-w | --waves]  [-q | --noclean]  [-c | --cov]
   dvm cmp  <target>
   dvm elab <target>  [-d | --debug]
   dvm cpel <target>
@@ -57,6 +57,7 @@ dbg             = False
 sim_debug       = True#False
 sim_gui         = False
 sim_waves       = True
+sim_cov         = False
 
 pwd               = os.getcwd()
 temp_path         = pwd + '/temp'
@@ -77,6 +78,7 @@ def do_dispatch(args):
     global sim_debug
     global sim_gui
     global sim_waves
+    global sim_cov
     glb_args = args
     
     if (dbg):
@@ -106,16 +108,16 @@ def do_dispatch(args):
         args['elab' ] = True
         args['sim'  ] = False
     
-    if (args['-d'] or args['--debug']):
-        sim_debug = True
-    else:
-        sim_debug = False
-    
     if (args['-w'] or args['--waves']):
         sim_waves = True
         sim_debug = True
     else:
         sim_waves = False
+    
+    if (args['-c'] or args['--cov']):
+        sim_cov = True
+    else:
+        sim_cov= False
     
     if (args['-g'] or args['--gui']):
         sim_debug = True
@@ -193,11 +195,16 @@ def do_elab(lib_name, design_unit):
     if (sim_debug):
         debug_str = " --debug all "
     else:
-        debug_str = ""
+        debug_str = " --debug typical "
+    
+    if (sim_cov):
+        cov_str = " -cov_db_name " + design_unit + " -cov_db_dir " + pwd + "/results/cov"
+    else: 
+        cov_str = " -ignore_coverage "
 
     elaboration_log_path = pwd + "/results/" + lib_name + ".elab.log"
     add_elab_to_history_log(lib_name, elaboration_log_path)
-    run_xsim_bin("xelab", lib_name + "." + design_unit + debug_str + " --incr -relax --O0 -v 0 -s " + design_unit + " -timescale 1ns/1ps -L " + lib_name + "=./out/" + lib_name + " --log " + elaboration_log_path)
+    run_xsim_bin("xelab", lib_name + "." + design_unit + cov_str + debug_str + " --incr -relax --O0 -v 0 -s " + design_unit + " -timescale 1ns/1ps -L " + lib_name + "=./out/" + lib_name + " --log " + elaboration_log_path)
     
 
 
@@ -249,6 +256,11 @@ def do_sim(lib_name, name, seed, plus_args):
     else:
         waves_str = ""
     
+    if (sim_cov):
+        cov_str = ""
+    else: 
+        cov_str = ""
+    
     if (sim_gui):
         gui_str = " --gui "
         runall_str = ""
@@ -259,10 +271,21 @@ def do_sim(lib_name, name, seed, plus_args):
         else:
             runall_str = " --runall --onerror quit"
     
+    if (sim_cov):
+        cov_str = " -cov_db_name " + name + "_" + seed + " -cov_db_dir " + tests_results_path + "/cov"
+    else: 
+        cov_str = " -ignore_coverage "
+    
     add_sim_to_history_log(lib_name, name, seed, orig_plus_args, tests_results_path)
     now = datetime.now()
-    run_xsim_bin("xsim", snapshot + gui_str + waves_str + runall_str + " " + act_args + " --stats --log " + tests_results_path + "/sim.log")
+    run_xsim_bin("xsim", snapshot + gui_str + waves_str + cov_str + runall_str + " " + act_args + " --stats --log " + tests_results_path + "/sim.log")
     update_sim_timestamp_in_history_log(lib_name, now, tests_results_path)
+    print("************************************************************************************************************************")
+    print("* View simulation results")
+    print("************************************************************************************************************************")
+    print("emacs " + tests_results_path + "/sim.log &")
+    print(vivado_path + "/xsim -gui -view " + tests_results_path + "/waves_cfg.tcl &")
+    print("************************************************************************************************************************")
 
 
 def add_elab_to_history_log(snapshot, elaboration_log_path):
@@ -375,6 +398,7 @@ def do_parse_results(snapshot, filename):
                     testcase = ET.SubElement(testsuite, "testcase")
                     testcase.set('id', snapshot + "." + cur_yaml[snapshot]['simulations'][sim]['test_name'])
                     testcase.set('name', cur_yaml[snapshot]['simulations'][sim]['test_name'])
+                    testcase.set('args', cur_yaml[snapshot]['simulations'][sim]['args'])
                     testcase.set('seed', str(cur_yaml[snapshot]['simulations'][sim]['seed']))
                     testcase.set('time', str(duration))
                     passed = sim_parse_sim_results(sim_log_path, testcase)
