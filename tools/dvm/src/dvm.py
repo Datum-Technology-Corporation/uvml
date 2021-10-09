@@ -181,6 +181,11 @@ def do_dispatch(args):
     else:
         sim_gui   = False
     
+    if args['<args>'] == None:
+        final_args = []
+    else:
+        final_args = args['<args>'].split()
+    
     if args['clean']:
         do_clean()
     if args['cmp']:
@@ -193,7 +198,7 @@ def do_dispatch(args):
         #do_elab_rtl(args['<target>'])
         do_elab(args['<target>'], args['<target>'] + "_tb")
     if args['sim']:
-        do_sim(args['<target>'], args['<test_name>'], args['<seed>'], args['<args>'].split())
+        do_sim(args['<target>'], args['<test_name>'], args['<seed>'], final_args)
     if args['results']:
         do_parse_results(args['<target>'], args['<filename>'])
     if args['cov']:
