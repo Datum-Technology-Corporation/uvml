@@ -244,15 +244,15 @@ def do_sim(lib_name, name, seed, plus_args):
     print("**********\033[0m")
     
     if (sim_waves):
-        if not os.path.exists(tests_results_path + "/waves_cfg.tcl"):
-            f = open(tests_results_path + "/waves_cfg.tcl", "w")
+        if not os.path.exists(tests_results_path + "/run.xsim.tcl"):
+            f = open(tests_results_path + "/run.xsim.tcl", "w")
             f.write("log_wave -recursive *")
             f.write("\n")
             f.write("run -all")
             f.write("\n")
             f.write("quit")
             f.close()
-        waves_str = " --wdb " + tests_results_path + "/waves.wdb --tclbatch " + tests_results_path + "/waves_cfg.tcl"
+        waves_str = " --wdb " + tests_results_path + "/waves.wdb --tclbatch " + tests_results_path + "/run.xsim.tcl"
     else:
         waves_str = ""
     
@@ -281,10 +281,16 @@ def do_sim(lib_name, name, seed, plus_args):
     run_xsim_bin("xsim", snapshot + gui_str + waves_str + cov_str + runall_str + " " + act_args + " --stats --log " + tests_results_path + "/sim.log")
     update_sim_timestamp_in_history_log(lib_name, now, tests_results_path)
     print("************************************************************************************************************************")
+    print("* View compilation/elaboration results")
+    print("************************************************************************************************************************")
+    print("Compilation: emacs ./results/" + lib_name + ".cmp.log &")
+    print("Elaboration: emacs ./results/" + lib_name + ".elab.log &")
+    print("************************************************************************************************************************")
     print("* View simulation results")
     print("************************************************************************************************************************")
-    print("emacs " + tests_results_path + "/sim.log &")
-    print(vivado_path + "/xsim -gui -view " + tests_results_path + "/waves_cfg.tcl &")
+    print("Open log file: emacs ./results/" + test_name + "_" + str(seed) + "/sim.log &")
+    if (sim_waves):
+        print("View waves: " + vivado_path + "xsim -gui ./results/" + test_name + "_" + str(seed) + "/waves.wdb &")
     print("************************************************************************************************************************")
 
 
@@ -419,25 +425,40 @@ def do_parse_results(snapshot, filename):
 
 def sim_parse_sim_results(sim_log_path, testcase):
     test_result = "passed"
+    num_warnings=0
+    num_errors = 0
+    num_fatals=0
     if not os.path.exists(history_file_path):
         print("No sim log file " + sim_log_path)
         test_result = "inconclusive"
     else:
         for i, line in enumerate(open(sim_log_path)):
+            matches = re.search(uvm_warning_regex, line)
+            if matches:
+                num_warnings = num_warnings + 1
             matches = re.search(uvm_error_regex, line)
             if matches:
                 failure = ET.SubElement(testcase, "failure")
                 failure.set("message", line)
                 failure.set("type", "ERROR")
                 test_result = "failed"
+                num_errors = num_errors + 1
             matches = re.search(uvm_fatal_regex, line)
             if matches:
                 failure = ET.SubElement(testcase, "failure")
                 failure.set("message", line)
                 failure.set("type", "FATAL")
                 test_result = "failed"
+                num_fatals = num_errors + 1
     
+    testcase.set("warnings", str(num_warnings))
+    testcase.set("errors", str(num_errors))
+    testcase.set("fatals", str(num_fatals))
     return test_result
+
+
+def gen_cov_report(sim_lib):
+    print("TODO")
 
 
 def copy_tree(src, dst, symlinks=False, ignore=None):
