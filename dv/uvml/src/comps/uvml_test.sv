@@ -17,14 +17,16 @@
 /**
  * TODO Describe uvml_test_c
  */
-class uvml_test_c extends uvm_test;
+class uvml_test_c /*#(
+   type T_TEST_CFG
+)*/ extends uvm_test;
    
-   // Fields
-   
+   // Objects
+   //rand T_TEST_CFG  cfg;
    
    
    `uvm_component_utils_begin(uvml_test_c)
-      // UVM Field Util Macros
+      
    `uvm_component_utils_end
    
    
@@ -49,5 +51,35 @@ function uvml_test_c::new(string name="uvml_test", uvm_component parent=null);
    
 endfunction : new
 
+/*
+function void uvml_test_c::phase_started(uvm_phase phase);
+   
+   super.phase_started(phase);
+   print_banner($sformatf("start of %s phase", phase.get_name()));
+   
+endfunction : phase_started
+
+
+function void uvml_test_c::phase_ended(uvm_phase phase);
+   
+   super.phase_ended(phase);
+   
+   if (phase.is(uvm_final_phase::get())) begin
+      uvm_config_db#(bit)::set(null, "", "sim_finished", 1);
+      print_banner("test finished");
+   end
+   
+endfunction : phase_ended
+
+
+function void uvml_test_c::print_banner(string text);
+   
+   $display("");
+   $display("*******************************************************************************");
+   $display(text.toupper());
+   $display("*******************************************************************************");
+   
+endfunction : print_banner
+*/
 
 `endif // __UVML_TEST_SV__

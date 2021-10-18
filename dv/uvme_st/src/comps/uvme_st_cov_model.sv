@@ -44,7 +44,7 @@ class uvme_st_cov_model_c extends uvm_component;
    covergroup st_cfg_cg;
       // TODO Implement st_cfg_cg
       //      Ex: tx_cpt : coverpoint cfg.tx;
-      //          rx_cpt : coverpoint cfg.rx;
+      //          rx_enabled_cpt : coverpoint cfg.rx_cfg.enabled;
    endgroup : st_cfg_cg
    
    covergroup st_cntxt_cg;
@@ -123,6 +123,9 @@ endclass : uvme_st_cov_model_c
 function uvme_st_cov_model_c::new(string name="uvme_st_cov_model", uvm_component parent=null);
    
    super.new(name, parent);
+   
+   // Build coverage groups
+   st_cfg_cg = new();
    
 endfunction : new
 

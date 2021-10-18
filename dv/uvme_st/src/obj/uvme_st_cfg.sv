@@ -58,15 +58,36 @@ class uvme_st_cfg_c extends uvml_cfg_c;
          rx_cfg.enabled == 1;
          soft scoreboarding_enabled == 1;
       }
+      else {
+         tx_cfg.enabled == 0;
+         rx_cfg.enabled == 0;
+      }
       
       if (is_active == UVM_ACTIVE) {
-         tx_cfg.is_active == UVM_ACTIVE;
+         tx_cfg.is_active == UVM_ACTIVE ;
+         rx_cfg.is_active == UVM_PASSIVE;
+      }
+      else {
+         tx_cfg.is_active == UVM_PASSIVE;
          rx_cfg.is_active == UVM_PASSIVE;
       }
       
       if (trn_log_enabled) {
-         soft tx_cfg.trn_log_enabled == 1;
-         soft rx_cfg.trn_log_enabled == 1;
+         /*soft*/ tx_cfg.trn_log_enabled == 1;
+         /*soft*/ rx_cfg.trn_log_enabled == 1;
+      }
+      else {
+         tx_cfg.trn_log_enabled == 0;
+         rx_cfg.trn_log_enabled == 0;
+      }
+      
+      if (cov_model_enabled) {
+         /*soft*/ tx_cfg.cov_model_enabled == 1;
+         /*soft*/ rx_cfg.cov_model_enabled == 1;
+      }
+      else {
+         tx_cfg.cov_model_enabled == 0;
+         rx_cfg.cov_model_enabled == 0;
       }
    }
    
