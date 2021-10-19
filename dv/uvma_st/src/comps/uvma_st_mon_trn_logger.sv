@@ -17,7 +17,9 @@
 /**
  * Component writing Extension Library Self-Test monitor transactions debug data to disk as plain text.
  */
-class uvma_st_mon_trn_logger_c extends uvm_subscriber#(.T(uvma_st_mon_trn_c));
+class uvma_st_mon_trn_logger_c extends uvm_subscriber #(
+   .T(uvma_st_mon_trn_c)
+);
    
    uvml_file_c  file; ///< 
    

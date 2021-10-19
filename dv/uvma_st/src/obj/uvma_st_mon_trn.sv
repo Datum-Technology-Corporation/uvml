@@ -36,6 +36,11 @@ class uvma_st_mon_trn_c extends uvml_mon_trn_c;
     */
    extern function new(string name="uvma_st_mon_trn");
    
+   /**
+    * TODO Describe uvma_st_mon_trn_c::get_metadata()
+    */
+   extern virtual function uvml_metadata_t get_metadata();
+   
 endclass : uvma_st_mon_trn_c
 
 
@@ -44,6 +49,39 @@ function uvma_st_mon_trn_c::new(string name="uvma_st_mon_trn");
    super.new(name);
    
 endfunction : new
+
+
+function uvml_metadata_t uvma_st_mon_trn_c::get_metadata();
+   
+   string           payload_str;
+   uvml_metadata_t  metadata   ;
+   
+   payload_str = "";
+   foreach (payload[ii]) begin
+      payload_str = {"_", $sformatf("%02h", payload[ii]), payload_str};
+   end
+   
+   metadata["payload_size"] = '{
+      index     : 0,
+      value     : payload_str,
+      col_name  : "size",
+      col_width :  4,
+      col_align : UVML_COL_ALIGN_RIGHT,
+      data_type : UVML_FIELD_INT
+   };
+   
+   metadata["payload"] = '{
+      index     : 1,
+      value     : payload_str,
+      col_name  : "data",
+      col_width :  32,
+      col_align : UVML_COL_ALIGN_RIGHT,
+      data_type : UVML_FIELD_QUEUE_INT
+   };
+   
+   return metadata;
+   
+endfunction : get_metadata
 
 
 `endif // __UVMA_ST_MON_TRN_SV__

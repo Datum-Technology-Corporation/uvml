@@ -84,6 +84,11 @@ class uvml_mon_trn_c extends uvm_sequence_item;
     */
    extern function void set_timestamp_end(realtime val);
    
+   /**
+    * TODO Describe uvml_mon_trn_c::get_metadata()
+    */
+   extern function uvml_metadata_t get_metadata();
+   
 endclass : uvml_mon_trn_c
 
 
@@ -160,6 +165,14 @@ function void uvml_mon_trn_c::set_timestamp_end(realtime val);
    __timestamp_end = val;
    
 endfunction : set_timestamp_end
+
+
+function uvml_metadata_t uvml_mon_trn_c::get_metadata();
+   
+   uvml_metadata_t  empty_set;
+   return empty_set;
+   
+endfunction : get_metadata
 
 
 `endif // __UVML_MON_TRN_SV__

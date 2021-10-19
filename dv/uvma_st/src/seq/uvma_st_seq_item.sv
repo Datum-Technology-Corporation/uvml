@@ -38,6 +38,11 @@ class uvma_st_seq_item_c extends uvml_seq_item_c;
     */
    extern function new(string name="uvma_st_seq_item");
    
+   /**
+    * TODO Describe uvma_st_seq_item_c::get_metadata()
+    */
+   extern virtual function uvml_metadata_t get_metadata();
+   
 endclass : uvma_st_seq_item_c
 
 
@@ -46,6 +51,30 @@ function uvma_st_seq_item_c::new(string name="uvma_st_seq_item");
    super.new(name);
    
 endfunction : new
+
+
+function uvml_metadata_t uvma_st_seq_item_c::get_metadata();
+   
+   string           payload_str;
+   uvml_metadata_t  metadata   ;
+   
+   payload_str = "";
+   foreach (payload[ii]) begin
+      payload_str = {"_", $sformatf("%02h", payload[ii]), payload_str};
+   end
+   
+   metadata["payload"] = '{
+      index     : 0,
+      value     : payload_str,
+      col_name  : "payload",
+      col_width :  32,
+      col_align : UVML_COL_ALIGN_RIGHT,
+      data_type : UVML_FIELD_ARRAY_INT
+   };
+   
+   return metadata;
+   
+endfunction : get_metadata
 
 
 `endif // __UVMA_ST_SEQ_ITEM_SV__

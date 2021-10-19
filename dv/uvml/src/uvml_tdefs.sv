@@ -51,6 +51,7 @@ typedef enum bit {
    UVML_EDGE_DEASSERTED = 0
 } uvml_edge_enum;
 
+
 /**
  * Describes a component issuing a heartbeat to an instance of the heartbeat monitor (uvml_hrtbt_mon_c).
  */
@@ -59,6 +60,67 @@ typedef struct {
    int            id       ; ///< 
    realtime       timestamp; ///< 
 } uvml_hrtbt_entry_struct;
+
+
+/**
+ * List of possible field types.  Essentially a listing of UVM's field utility macros.
+ */
+typedef enum {
+   UVML_FIELD_INT          , ///< 
+   UVML_FIELD_OBJECT       , ///< 
+   UVML_FIELD_STRING       , ///< 
+   UVML_FIELD_ENUM         , ///< 
+   UVML_FIELD_REAL         , ///< 
+   UVML_FIELD_SARRAY_INT   , ///< 
+   UVML_FIELD_SARRAY_OBJECT, ///< 
+   UVML_FIELD_SARRAY_STRING, ///< 
+   UVML_FIELD_SARRAY_ENUM  , ///< 
+   UVML_FIELD_SARRAY_REAL  , ///< 
+   UVML_FIELD_ARRAY_INT    , ///< 
+   UVML_FIELD_ARRAY_OBJECT , ///< 
+   UVML_FIELD_ARRAY_STRING , ///< 
+   UVML_FIELD_ARRAY_ENUM   , ///< 
+   UVML_FIELD_ARRAY_REAL   , ///< 
+   UVML_FIELD_QUEUE_INT    , ///< 
+   UVML_FIELD_QUEUE_OBJECT , ///< 
+   UVML_FIELD_QUEUE_STRING , ///< 
+   UVML_FIELD_QUEUE_ENUM   , ///< 
+   UVML_FIELD_QUEUE_REAL   , ///< 
+   UVML_FIELD_AA_INT       , ///< 
+   UVML_FIELD_AA_OBJECT    , ///< 
+   UVML_FIELD_AA_STRING    , ///< 
+   UVML_FIELD_AA_ENUM      , ///< 
+   UVML_FIELD_AA_REAL        ///< 
+} uvml_field_enum;
+
+
+/**
+ * 
+ */
+typedef enum {
+   UVML_COL_ALIGN_LEFT  , ///< 
+   UVML_COL_ALIGN_CENTER, ///< 
+   UVML_COL_ALIGN_RIGHT   ///< 
+} uvml_col_align_enum;
+
+
+/**
+ * Encapsulates a field of metadata for an object.
+ */
+typedef struct {
+   int unsigned         index    ; ///< 
+   string               value    ; ///< 
+   string               col_name ; ///< 
+   int unsigned         col_width; ///< 
+   uvml_col_align_enum  col_align; ///< 
+   uvml_field_enum      data_type; ///< 
+} uvml_metadata_field_t;
+
+
+/**
+ * Encapsulates all the metadata for an object.
+ */
+typedef uvml_metadata_field_t  uvml_metadata_t[string];
 
 
 `endif // __UVML_TDEFS_SV__
