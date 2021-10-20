@@ -66,7 +66,7 @@ function uvml_metadata_t uvma_st_mon_trn_c::get_metadata();
       value     : payload_str,
       col_name  : "size",
       col_width :  4,
-      col_align : UVML_COL_ALIGN_RIGHT,
+      col_align : UVML_TEXT_ALIGN_RIGHT,
       data_type : UVML_FIELD_INT
    };
    
@@ -75,7 +75,7 @@ function uvml_metadata_t uvma_st_mon_trn_c::get_metadata();
       value     : payload_str,
       col_name  : "data",
       col_width :  32,
-      col_align : UVML_COL_ALIGN_RIGHT,
+      col_align : UVML_TEXT_ALIGN_RIGHT,
       data_type : UVML_FIELD_QUEUE_INT
    };
    

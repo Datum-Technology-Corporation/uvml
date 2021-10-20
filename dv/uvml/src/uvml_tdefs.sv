@@ -98,22 +98,22 @@ typedef enum {
  * 
  */
 typedef enum {
-   UVML_COL_ALIGN_LEFT  , ///< 
-   UVML_COL_ALIGN_CENTER, ///< 
-   UVML_COL_ALIGN_RIGHT   ///< 
-} uvml_col_align_enum;
+   UVML_TEXT_ALIGN_LEFT  , ///< 
+   UVML_TEXT_ALIGN_CENTER, ///< 
+   UVML_TEXT_ALIGN_RIGHT   ///< 
+} uvml_text_align_enum;
 
 
 /**
  * Encapsulates a field of metadata for an object.
  */
 typedef struct {
-   int unsigned         index    ; ///< 
-   string               value    ; ///< 
-   string               col_name ; ///< 
-   int unsigned         col_width; ///< 
-   uvml_col_align_enum  col_align; ///< 
-   uvml_field_enum      data_type; ///< 
+   int unsigned          index    ; ///< 
+   string                value    ; ///< 
+   string                col_name ; ///< 
+   int unsigned          col_width; ///< 
+   uvml_text_align_enum  col_align; ///< 
+   uvml_field_enum       data_type; ///< 
 } uvml_metadata_field_t;
 
 

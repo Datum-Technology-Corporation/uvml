@@ -68,7 +68,7 @@ function uvml_metadata_t uvma_st_seq_item_c::get_metadata();
       value     : payload_str,
       col_name  : "payload",
       col_width :  32,
-      col_align : UVML_COL_ALIGN_RIGHT,
+      col_align : UVML_TEXT_ALIGN_RIGHT,
       data_type : UVML_FIELD_ARRAY_INT
    };
    
