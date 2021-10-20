@@ -24,9 +24,9 @@ class uvml_file_c extends uvm_object;
    string                   path    ; ///< 
    
    // IO
-   protected bit                    fhandle_valid      ; ///< 
-   protected int unsigned           fhandle            ; ///< 
-   protected uvml_file_access_enum  current_access_type; ///< 
+   protected bit           fhandle_valid      ; ///< 
+   protected int unsigned  fhandle            ; ///< 
+   protected uvm_access_e  current_access_type; ///< 
    
    protected static string  base_dir_paths[uvml_file_base_dir_enum]; ///< Dictionary of all paths obtained from CLI args
    
@@ -45,7 +45,7 @@ class uvml_file_c extends uvm_object;
    /**
     * TODO Describe uvml_file_c::open()
     */
-   extern function bit open(uvml_file_access_enum access_type, string path="default");
+   extern function bit open(uvm_access_e access_type, string path="default");
    
    /**
     * TODO Describe uvml_file_c::open()
@@ -156,7 +156,7 @@ function uvml_file_c::new(string name="uvml_file");
 endfunction : new
 
 
-function bit uvml_file_c::open(uvml_file_access_enum access_type, string path="default");
+function bit uvml_file_c::open(uvm_access_e access_type, string path="default");
    
    string  access_str = "";
    
@@ -165,8 +165,8 @@ function bit uvml_file_c::open(uvml_file_access_enum access_type, string path="d
    end
    else begin
       case (access_type)
-         UVML_FILE_ACCESS_READ : access_str = "r";
-         UVML_FILE_ACCESS_WRITE: access_str = "w+";
+         UVM_READ : access_str = "r";
+         UVM_WRITE: access_str = "w+";
          
          default: begin
             `uvm_warning("UVML_FILE", $sformatf("Invalid access_type: %s", access_type.name()))
@@ -179,11 +179,11 @@ function bit uvml_file_c::open(uvml_file_access_enum access_type, string path="d
       end
       if (base_dir == UVML_FILE_BASE_DIR_DEFAULT) begin
          case (access_type)
-            UVML_FILE_ACCESS_READ : base_dir = UVML_FILE_BASE_DIR_TESTS       ;
-            UVML_FILE_ACCESS_WRITE: base_dir = UVML_FILE_BASE_DIR_TEST_RESULTS;
+            UVM_READ : base_dir = UVML_FILE_BASE_DIR_TESTS       ;
+            UVM_WRITE: base_dir = UVML_FILE_BASE_DIR_TEST_RESULTS;
          endcase
       end
-      fhandle = $fopen(get_path(), access_str);
+      fhandle = $fopen(get_full_path(), access_str);
       fhandle_valid = (fhandle != 0);
    end
    
@@ -215,7 +215,7 @@ function string uvml_file_c::read_line();
       `uvm_error("UVML_FILE", $sformatf("Attempting to read from file that isn't open: %s", get_full_path()))
    end
    else begin
-      if (current_access_type == UVML_FILE_ACCESS_READ) begin
+      if (current_access_type == UVM_READ) begin
          if (!is_eof()) begin
             return_val = $fgets(read_line, fhandle);
          end
@@ -238,7 +238,7 @@ function void uvml_file_c::write(string text);
       `uvm_warning("UVML_FILE", $sformatf("Attempting to write to file that isn't open: %s", get_full_path()))
    end
    else begin
-      if (current_access_type == UVML_FILE_ACCESS_WRITE) begin
+      if (current_access_type == UVM_WRITE) begin
          $fwrite(fhandle, text);
       end
       else begin
@@ -325,6 +325,7 @@ function string uvml_file_c::get_cli_path(uvml_file_base_dir_enum base_dir);
          base_dir_paths[base_dir] = get_cli_arg(base_dir);
       end
       get_cli_path = base_dir_paths[base_dir];
+      //get_cli_path = "/home/dpoulin/git/uvml/sim/results/uvmt_st_traffic_test_1";
    end
    
 endfunction : get_cli_path

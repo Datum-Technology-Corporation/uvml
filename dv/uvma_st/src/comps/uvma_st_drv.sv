@@ -17,7 +17,7 @@
 /**
  * Component driving a Extension Library Self-Test virtual interface (uvma_st_if).
  */
-class uvma_st_drv_c extends uvml_drv_c#(
+class uvma_st_drv_c extends uvml_drv_c #(
    .REQ(uvma_st_seq_item_c),
    .RSP(uvma_st_seq_item_c)
 );
@@ -29,7 +29,7 @@ class uvma_st_drv_c extends uvml_drv_c#(
    uvma_st_cntxt_c  cntxt; ///< 
    
    // TLM
-   uvm_analysis_port#(uvma_st_seq_item_c)  ap; ///< 
+   uvm_analysis_port #(uvma_st_seq_item_c)  ap; ///< 
    
    
    `uvm_component_utils_begin(uvma_st_drv_c)
@@ -89,13 +89,13 @@ function void uvma_st_drv_c::build_phase(uvm_phase phase);
    super.build_phase(phase);
    
    void'(uvm_config_db#(uvma_st_cfg_c)::get(this, "", "cfg", cfg));
-   if (!cfg) begin
+   if (cfg == null) begin
       `uvm_fatal("CFG", "Configuration handle is null")
    end
    uvm_config_db#(uvma_st_cfg_c)::set(this, "*", "cfg", cfg);
    
    void'(uvm_config_db#(uvma_st_cntxt_c)::get(this, "", "cntxt", cntxt));
-   if (!cntxt) begin
+   if (cntxt == null) begin
       `uvm_fatal("CNTXT", "Context handle is null")
    end
    uvm_config_db#(uvma_st_cntxt_c)::set(this, "*", "cntxt", cntxt);

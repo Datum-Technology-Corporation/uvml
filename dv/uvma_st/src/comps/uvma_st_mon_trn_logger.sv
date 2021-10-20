@@ -57,10 +57,9 @@ function void uvma_st_mon_trn_logger_c::end_of_elaboration_phase(uvm_phase phase
    file = uvml_file_c::type_id::create("file");
    file.set_base_dir(UVML_FILE_BASE_DIR_TEST_RESULTS);
    file.set_path({"/trn_log/", get_parent().get_full_name(), ".mon_trn.log"});
-   file.open(UVML_FILE_ACCESS_WRITE);
-   file.write_line("-------------------");
-   file.write_line("    TIME    | SIZE | DATA ");
-   file.write_line("-------------------");
+   file.open(UVM_WRITE);
+   file.write_line("        TIME        | SIZE | DATA ");
+   file.write_line("----------------------------");
    
 endfunction : end_of_elaboration_phase
 
@@ -72,7 +71,7 @@ function void uvma_st_mon_trn_logger_c::write(uvma_st_mon_trn_c t);
    foreach (t.payload[ii]) begin
       payload_str = {"_", $sformatf("%02h", t.payload[ii]), payload_str};
    end
-   file.write_line($sformatf(" %t | %03d | %02s", $realtime(), t.get_timestamp_end(), t.payload_size, payload_str));
+   file.write_line($sformatf(" %t |  %03d | %02s", t.get_timestamp_end(), t.payload_size, payload_str));
    
 endfunction : write
 

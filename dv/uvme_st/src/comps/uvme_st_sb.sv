@@ -56,6 +56,11 @@ class uvme_st_sb_c extends uvm_scoreboard;
     */
    extern virtual task run_phase(uvm_phase phase);
    
+   /**
+    * TODO Describe uvme_st_sb_c::check_phase()
+    */
+   extern virtual function void check_phase(uvm_phase phase);
+   
 endclass : uvme_st_sb_c
 
 
@@ -71,12 +76,12 @@ function void uvme_st_sb_c::build_phase(uvm_phase phase);
    super.build_phase(phase);
    
    void'(uvm_config_db#(uvme_st_cfg_c)::get(this, "", "cfg", cfg));
-   if (!cfg) begin
+   if (cfg == null) begin
       `uvm_fatal("CFG", "Configuration handle is null")
    end
    
    void'(uvm_config_db#(uvme_st_cntxt_c)::get(this, "", "cntxt", cntxt));
-   if (!cntxt) begin
+   if (cntxt == null) begin
       `uvm_fatal("CNTXT", "Context handle is null")
    end
    
@@ -107,22 +112,44 @@ task uvme_st_sb_c::run_phase(uvm_phase phase);
    super.run_phase(phase);
    
    if (cfg.scoreboarding_enabled) begin
-      forever begin
-         exp_fifo.get(exp_trn);
-         `uvm_info("ST_SB", $sformatf("Got new expected transaction:\n%s", exp_trn.sprint()), UVM_MEDIUM)
-         act_fifo.get(act_trn);
-         `uvm_info("ST_SB", $sformatf("Got new actual transaction:\n%s", act_trn.sprint()), UVM_MEDIUM)
-         if (exp_trn.compare(act_trn)) begin
-            `uvm_info("ST_SB", $sformatf("Match! exp:\n%s\nact:\n%s", exp_trn.sprint(), act_trn.sprint()), UVM_MEDIUM)
-            cntxt.sb_num_matches++;
+      fork
+         begin
+            exp_fifo.get(exp_trn);
+            `uvm_info("ST_SB", $sformatf("Got new expected transaction:\n%s", exp_trn.sprint()), UVM_MEDIUM)
+            cntxt.sb_exp_q.push_back(exp_trn);
          end
-         else begin
-            `uvm_error("ST_SB", $sformatf("No match! exp:\n%s\nact:\n%s", exp_trn.sprint(), act_trn.sprint()))
+         
+         begin
+            forever begin
+               act_fifo.get(act_trn);
+               `uvm_info("ST_SB", $sformatf("Got new actual transaction:\n%s", act_trn.sprint()), UVM_MEDIUM)
+               exp_trn = cntxt.sb_exp_q.pop_front();
+               if (exp_trn.compare(act_trn)) begin
+                  `uvm_info("ST_SB", $sformatf("Match! exp:\n%s\nact:\n%s", exp_trn.sprint(), act_trn.sprint()), UVM_MEDIUM)
+                  cntxt.sb_num_matches++;
+               end
+               else begin
+                  `uvm_error("ST_SB", $sformatf("No match! exp:\n%s\nact:\n%s", exp_trn.sprint(), act_trn.sprint()))
+               end
+            end
          end
-      end
+      join
    end
    
 endtask: run_phase
+
+
+function void uvme_st_sb_c::check_phase(uvm_phase phase);
+   
+   super.check_phase(phase);
+   
+   if (cfg.scoreboarding_enabled) begin
+      if (cntxt.sb_num_matches == 0) begin
+         `uvm_error("ST_SB", "Scoreboard did not see any matches during simulation")
+      end
+   end
+   
+endfunction : check_phase
 
 
 `endif // __UVME_ST_SB_SV__

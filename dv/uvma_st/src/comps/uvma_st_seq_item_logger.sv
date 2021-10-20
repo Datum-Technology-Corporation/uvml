@@ -17,11 +17,15 @@
 /**
  * Component writing Extension Library Self-Test sequence items debug data to disk as plain text.
  */
-class uvma_st_seq_item_logger_c extends uvm_subscriber#(.T(uvma_st_seq_item_c));
+class uvma_st_seq_item_logger_c extends uvm_subscriber #(
+   .T(uvma_st_seq_item_c)
+);
    
    uvml_file_c  file; ///< 
    
+   
    `uvm_component_utils(uvma_st_seq_item_logger_c)
+   
    
    /**
     * Default constructor.
@@ -53,18 +57,21 @@ function void uvma_st_seq_item_logger_c::end_of_elaboration_phase(uvm_phase phas
    file = uvml_file_c::type_id::create("file");
    file.set_base_dir(UVML_FILE_BASE_DIR_TEST_RESULTS);
    file.set_path({"/trn_log/", get_parent().get_full_name(), ".seq_item.log"});
-   file.open(UVML_FILE_ACCESS_WRITE);
-   file.write_line("-------------------");
-   file.write_line("    TIME    | SIZE | DATA ");
-   file.write_line("-------------------");
+   file.open(UVM_WRITE);
+   file.write_line("        TIME        | SIZE | DATA ");
+   file.write_line("----------------------------");
    
 endfunction : end_of_elaboration_phase
 
 
 function void uvma_st_seq_item_logger_c::write(uvma_st_seq_item_c t);
    
-   // TODO Implement uvma_st_seq_item_logger_c::write()
-   // Ex: fwrite($sformatf(" %t | %08h | %02b | %04d | %02h |", $realtime(), t.a, t.b, t.c, t.d));
+   string payload_str = "";
+   
+   foreach (t.payload[ii]) begin
+      payload_str = {"_", $sformatf("%02h", t.payload[ii]), payload_str};
+   end
+   file.write_line($sformatf(" %t |  %03d | %02s", $realtime(), t.payload.size(), payload_str));
    
 endfunction : write
 

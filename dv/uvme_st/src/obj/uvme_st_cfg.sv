@@ -26,6 +26,7 @@ class uvme_st_cfg_c extends uvml_cfg_c;
    rand bit                      scoreboarding_enabled; ///< 
    rand bit                      cov_model_enabled    ; ///< 
    rand bit                      trn_log_enabled      ; ///< 
+   rand uvml_reset_type_enum     reset_type           ; //< 
    
    // Objects
    rand uvma_st_cfg_c  tx_cfg; ///< 
@@ -56,7 +57,6 @@ class uvme_st_cfg_c extends uvml_cfg_c;
       if (enabled) {
          tx_cfg.enabled == 1;
          rx_cfg.enabled == 1;
-         soft scoreboarding_enabled == 1;
       }
       else {
          tx_cfg.enabled == 0;
@@ -89,6 +89,9 @@ class uvme_st_cfg_c extends uvml_cfg_c;
          tx_cfg.cov_model_enabled == 0;
          rx_cfg.cov_model_enabled == 0;
       }
+      
+      tx_cfg.reset_type == reset_type;
+      rx_cfg.reset_type == reset_type;
    }
    
    

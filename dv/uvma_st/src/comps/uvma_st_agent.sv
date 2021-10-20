@@ -21,20 +21,20 @@
 class uvma_st_agent_c extends uvml_agent_c;
    
    // Objects
-   uvma_st_cfg_c    cfg;
-   uvma_st_cntxt_c  cntxt;
+   uvma_st_cfg_c    cfg  ; ///< 
+   uvma_st_cntxt_c  cntxt; ///< 
    
    // Components
-   uvma_st_drv_c              driver;
-   uvma_st_mon_c              monitor;
-   uvma_st_sqr_c              sequencer;
-   uvma_st_cov_model_c        cov_model;
-   uvma_st_seq_item_logger_c  seq_item_logger;
-   uvma_st_mon_trn_logger_c   mon_trn_logger;
+   uvma_st_drv_c              driver         ; ///< 
+   uvma_st_mon_c              monitor        ; ///< 
+   uvma_st_sqr_c              sequencer      ; ///< 
+   uvma_st_cov_model_c        cov_model      ; ///< 
+   uvma_st_seq_item_logger_c  seq_item_logger; ///< 
+   uvma_st_mon_trn_logger_c   mon_trn_logger ; ///< 
    
    // TLM
-   uvm_analysis_port#(uvma_st_seq_item_c)  drv_ap;
-   uvm_analysis_port#(uvma_st_mon_trn_c )  mon_ap;
+   uvm_analysis_port#(uvma_st_seq_item_c)  drv_ap; ///< 
+   uvm_analysis_port#(uvma_st_mon_trn_c )  mon_ap; ///< 
    
    
    `uvm_component_utils_begin(uvma_st_agent_c)

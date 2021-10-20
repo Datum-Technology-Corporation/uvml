@@ -24,7 +24,8 @@ class uvme_st_cntxt_c extends uvml_cntxt_c;
    uvma_st_cntxt_c  tx_cntxt; ///< 
    uvma_st_cntxt_c  rx_cntxt; ///< 
    
-   int unsigned  sb_num_matches = 0; ///< 
+   uvma_st_mon_trn_c  sb_exp_q[$]   ; ///< 
+   int unsigned       sb_num_matches; ///< 
    
    // Events
    uvm_event  sample_cfg_e  ; ///< 
@@ -35,7 +36,8 @@ class uvme_st_cntxt_c extends uvml_cntxt_c;
       `uvm_field_object(tx_cntxt, UVM_DEFAULT)
       `uvm_field_object(rx_cntxt, UVM_DEFAULT)
       
-      `uvm_field_int(sb_num_matches, UVM_DEFAULT)
+      `uvm_field_queue_object(sb_exp_q      , UVM_DEFAULT)
+      `uvm_field_int         (sb_num_matches, UVM_DEFAULT)
       
       `uvm_field_event(sample_cfg_e  , UVM_DEFAULT)
       `uvm_field_event(sample_cntxt_e, UVM_DEFAULT)
@@ -58,6 +60,8 @@ endclass : uvme_st_cntxt_c
 function uvme_st_cntxt_c::new(string name="uvme_st_cntxt");
    
    super.new(name);
+   
+   sb_num_matches = 0;
    
    tx_cntxt = uvma_st_cntxt_c::type_id::create("tx_cntxt");
    rx_cntxt = uvma_st_cntxt_c::type_id::create("rx_cntxt");
