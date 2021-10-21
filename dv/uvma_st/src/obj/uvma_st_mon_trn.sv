@@ -61,7 +61,7 @@ function uvml_metadata_t uvma_st_mon_trn_c::get_metadata();
       payload_str = {"_", $sformatf("%02h", payload[ii]), payload_str};
    end
    
-   metadata["payload_size"] = '{
+   metadata[0] = '{
       index     : 0,
       value     : payload_str,
       col_name  : "size",
@@ -70,7 +70,7 @@ function uvml_metadata_t uvma_st_mon_trn_c::get_metadata();
       data_type : UVML_FIELD_INT
    };
    
-   metadata["payload"] = '{
+   metadata[1] = '{
       index     : 1,
       value     : payload_str,
       col_name  : "data",

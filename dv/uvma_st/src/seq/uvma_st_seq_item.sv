@@ -63,7 +63,7 @@ function uvml_metadata_t uvma_st_seq_item_c::get_metadata();
       payload_str = {"_", $sformatf("%02h", payload[ii]), payload_str};
    end
    
-   metadata["payload"] = '{
+   metadata[0] = '{
       index     : 0,
       value     : payload_str,
       col_name  : "payload",

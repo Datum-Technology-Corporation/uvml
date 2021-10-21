@@ -120,7 +120,7 @@ typedef struct {
 /**
  * Encapsulates all the metadata for an object.
  */
-typedef uvml_metadata_field_t  uvml_metadata_t[string];
+typedef uvml_metadata_field_t  uvml_metadata_t[$];
 
 
 `endif // __UVML_TDEFS_SV__
