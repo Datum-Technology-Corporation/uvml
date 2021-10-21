@@ -19,6 +19,9 @@
 `define uvml_hrtbt(ID) \
    uvml_default_hrtbt_mon.heartbeat(this, ID); \
 
+`define uvml_hrtbt_owner(COMP, ID) \
+   uvml_default_hrtbt_mon.heartbeat(COMP, ID); \
+
 `define uvml_hrtbt_nowner(ID) \
    uvml_default_hrtbt_mon.heartbeat(null, ID); \
 
