@@ -4,16 +4,11 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 ## [Get Latest Release](TODO) (v1.0)
 ### [Source Code only](TODO) (`.tgz`) - [View Documentation online](TODO)
 
-| A | B |
-| - | - |
-| 1 | 2 |
-
 # Downloads
 ## [View All Releases](TODO)
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
-| --------------------- | ---------------- | --------------- |
-| 1 | 2 | 3 |
 
+| --------------------- | ---------------- | --------------- |
 | [Source Code](TODO) | [Source Code](TODO)) | [Source Code](TODO) |
 | [Documentation](TODO) | [Documentation](TODO) | [Documentation](TODO) |
 
@@ -22,6 +17,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 ## Metrics
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
+
 | --------------------- | ---------------- | --------------- |
 | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) |
 | [Release Regression Test Report](TODO) | [Regression Test Report](TODO) | [Regression Test Report](TODO) |
