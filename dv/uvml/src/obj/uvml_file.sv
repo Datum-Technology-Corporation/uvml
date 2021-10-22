@@ -348,13 +348,70 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
    
    // Use uvm_cmdLine_proc to get the arg value
    final_arg = {cli_arg_name, "=%s"};
+   // NOTE None of the standard code below works with vivado, so we have to hardcode each call to $value$plusargs
    //if (uvm_cmdline_proc.get_arg_value({"+", cli_arg_name, "="}, cli_arg_val)) begin
-   if ($value$plusargs(final_arg, cli_arg_val)) begin
-      `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_NONE/*UVM_DEBUG*/)
-   end
-   else begin
-      `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
-   end
+   //if ($value$plusargs(final_arg, cli_arg_val)) begin
+   //   `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_NONE/*UVM_DEBUG*/)
+   //end
+   //else begin
+   //   `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+   //end
+   
+   case (base_dir)
+     UVML_FILE_BASE_DIR_SIM : begin
+         if ($value$plusargs("UVML_FILE_BASE_DIR_SIM=%s", cli_arg_val)) begin
+            `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
+         end
+         else begin
+            `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+         end
+      end
+      
+     UVML_FILE_BASE_DIR_TB : begin
+         if ($value$plusargs("UVML_FILE_BASE_DIR_TB=%s", cli_arg_val)) begin
+            `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
+         end
+         else begin
+            `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+         end
+      end
+      
+     UVML_FILE_BASE_DIR_TESTS : begin
+         if ($value$plusargs("UVML_FILE_BASE_DIR_TESTS=%s", cli_arg_val)) begin
+            `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
+         end
+         else begin
+            `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+         end
+      end
+      
+     UVML_FILE_BASE_DIR_TEST_RESULTS : begin
+         if ($value$plusargs("UVML_FILE_BASE_DIR_TEST_RESULTS=%s", cli_arg_val)) begin
+            `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
+         end
+         else begin
+            `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+         end
+      end
+      
+     UVML_FILE_BASE_DIR_DV : begin
+         if ($value$plusargs("UVML_FILE_BASE_DIR_DV=%s", cli_arg_val)) begin
+            `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
+         end
+         else begin
+            `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+         end
+      end
+      
+     UVML_FILE_BASE_DIR_RTL : begin
+         if ($value$plusargs("UVML_FILE_BASE_DIR_RTL=%s", cli_arg_val)) begin
+            `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
+         end
+         else begin
+            `uvm_warning("FILE", $sformatf("Could not find %s", final_arg))
+         end
+      end
+   endcase
    
    return cli_arg_val;
    

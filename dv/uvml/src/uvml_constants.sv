@@ -14,6 +14,9 @@
 `define __UVML_CONSTANTS_SV__
 
 
+/**
+ * WARNING These are not in use because Vivado can't accept a non-hardcoded string in calls to $value$plusargs()
+ */
 const string  uvml_file_cli_args[uvml_file_base_dir_enum] = '{
    UVML_FILE_BASE_DIR_SIM         : "UVML_FILE_BASE_DIR_SIM"         ,
    UVML_FILE_BASE_DIR_TB          : "UVML_FILE_BASE_DIR_TB"          ,
