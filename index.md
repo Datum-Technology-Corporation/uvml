@@ -6,8 +6,8 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 # Downloads
 ## [View All Releases](TODO)
-| Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 
+| Latest Release - v1p0 | Stable - Nightly | Stable - Weekly |
 | --------------------- | ---------------- | --------------- |
 | [Source Code](TODO) | [Source Code](TODO)) | [Source Code](TODO) |
 | [Documentation](TODO) | [Documentation](TODO) | [Documentation](TODO) |
@@ -16,8 +16,8 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 ## [Issues](https://github.com/Datum-Technology-Corporation/uvml/issues) - [Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki) - [Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions) - [Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)
 
 ## Metrics
-| Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 
+| Latest Release - v1p0 | Stable - Nightly | Stable - Weekly |
 | --------------------- | ---------------- | --------------- |
 | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) |
 | [Release Regression Test Report](TODO) | [Regression Test Report](TODO) | [Regression Test Report](TODO) |
