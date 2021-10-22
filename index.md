@@ -3,8 +3,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 
 ## [Get Latest Release](TODO) (v1.0)
-
-| [Source Code only](TODO) | [View Documentation online](TODO) |
+### [Source Code only](TODO) - [View Documentation online](TODO)
 
 
 # Downloads
@@ -13,7 +12,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 | --------------------- | ---------------- | --------------- |
-| [Source Code](TODO) | [Source Code](TODO)) | [Source Code](TODO) |
+| [Source Code](TODO) | [Source Code](TODO) | [Source Code](TODO) |
 | [Documentation](TODO) | [Documentation](TODO) | [Documentation](TODO) |
 
 
