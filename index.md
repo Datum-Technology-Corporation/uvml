@@ -2,28 +2,25 @@
 The Moore.io UVM Extensions Library is *the* must-have library in all your digital design simulations.  This project consists of the library (`uvml_pkg`), the self-testing agent (`uvma_st_pkg`), the self-testing UVM environment (`uvme_st_pkg`) and the test bench (`uvmt_st_pkg`) to verify the library against itself.
 
 ## [Get Latest Release](TODO) (v1.0)
-### [Download Source Code only](TODO) (`.tgz`)
-### [View Documentation online](TODO) (`html`)
-### [Browse Code online](https://github.com/Datum-Technology-Corporation/uvml/tree/main/dv/uvml)
+### [Source Code only](TODO) (`.tgz`)
+### [View Documentation online](TODO)
 
 # Downloads
 ## [View All Releases](TODO)
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 | --------------------- | ---------------- | --------------- |
-| [Source Code](TODO) (`.tgz`) | [Source Code](TODO) (`.tgz`) | [Source Code](TODO) (`.tgz`) |
-| [Documentation](TODO) (`html`) | [Documentation](TODO) (`html`) | [Documentation](TODO) (`html`) |
+| [Source Code](TODO) | [Source Code](TODO)) | [Source Code](TODO) |
+| [Documentation](TODO) | [Documentation](TODO) | [Documentation](TODO) |
 
 # Management
+## [Issues](https://github.com/Datum-Technology-Corporation/uvml/issues) - [Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki) - [Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions) - [Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)
+
 ## Metrics
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 | --------------------- | ---------------- | --------------- |
-| [Functional Coverage Report](TODO) (`.html`) | [Functional Coverage Report](TODO) (`.html`) | [Functional Coverage Report](TODO) (`.html`) |
-| [Release Regression Test Report](TODO) (`html`) | [Regression Test Report](TODO) (`html`) | [Regression Test Report](TODO) (`html`) |
+| [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) |
+| [Release Regression Test Report](TODO) | [Regression Test Report](TODO) | [Regression Test Report](TODO) |
 
-> ## [Issues](https://github.com/Datum-Technology-Corporation/uvml/issues)
-> ## [Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki)
-> ## [Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions)
-> ## [Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)
 
 
 # News
