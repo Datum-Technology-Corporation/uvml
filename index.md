@@ -17,7 +17,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 ## Metrics
 
-| Latest Release - v1p0 | Stable - Nightly | Stable - Weekly |
+| Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 | --------------------- | ---------------- | --------------- |
 | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) |
 | [Release Regression Test Report](TODO) | [Regression Test Report](TODO) | [Regression Test Report](TODO) |
