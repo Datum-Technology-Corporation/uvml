@@ -3,6 +3,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 
 ## [Get Latest Release](TODO) (v1.0)
+
 | [Source Code only](TODO) | [View Documentation online](TODO) |
 
 
@@ -20,7 +21,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 ## [Issues](https://github.com/Datum-Technology-Corporation/uvml/issues) - [Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki) - [Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions) - [Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)
 
 
-## Metrics
+# Metrics
 
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 | --------------------- | ---------------- | --------------- |
