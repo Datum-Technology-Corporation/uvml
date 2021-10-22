@@ -12,6 +12,8 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 ## [View All Releases](TODO)
 | Latest Release (v1p0) | Stable (Nightly) | Stable (Weekly) |
 | --------------------- | ---------------- | --------------- |
+| 1 | 2 | 3 |
+
 | [Source Code](TODO) | [Source Code](TODO)) | [Source Code](TODO) |
 | [Documentation](TODO) | [Documentation](TODO) | [Documentation](TODO) |
 
