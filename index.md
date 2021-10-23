@@ -22,7 +22,7 @@ The [Moore.io](https://www.mooreio.com) UVM Extensions Library is *the* must-hav
 ## Management
 
 | **[Issues](https://github.com/Datum-Technology-Corporation/uvml/issues)** | **[Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions)** |
-| **[Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)** | **[Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki)** |
+| **[Sub-Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)** | **[Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki)** |
 
 
 ## Metrics
