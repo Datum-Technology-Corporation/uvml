@@ -47,7 +47,7 @@ All jobs for simulation are performed via `dvm`.
 dvm --help
 ```
 
-> To run test 'all_access' with seed '1' and wave capture enabled:
+> To run test 'traffic' with seed '1' and wave capture enabled:
 
 ```
 clear && dvm all uvmt_st -t traffic -s 1 -w
