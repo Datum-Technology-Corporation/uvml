@@ -359,7 +359,7 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
    
    case (base_dir)
      UVML_FILE_BASE_DIR_SIM : begin
-         if ($value$plusargs("UVML_FILE_BASE_DIR_SIM=%s", cli_arg_val)) begin
+         if ($value$plusargs(`UVML_FILE_CLI_ARG_BASE_DIR_SIM, cli_arg_val)) begin
             `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
          end
          else begin
@@ -368,7 +368,7 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
       end
       
      UVML_FILE_BASE_DIR_TB : begin
-         if ($value$plusargs("UVML_FILE_BASE_DIR_TB=%s", cli_arg_val)) begin
+         if ($value$plusargs(`UVML_FILE_CLI_ARG_BASE_DIR_TB, cli_arg_val)) begin
             `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
          end
          else begin
@@ -377,7 +377,7 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
       end
       
      UVML_FILE_BASE_DIR_TESTS : begin
-         if ($value$plusargs("UVML_FILE_BASE_DIR_TESTS=%s", cli_arg_val)) begin
+         if ($value$plusargs(`UVML_FILE_CLI_ARG_BASE_DIR_TESTS, cli_arg_val)) begin
             `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
          end
          else begin
@@ -386,7 +386,7 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
       end
       
      UVML_FILE_BASE_DIR_TEST_RESULTS : begin
-         if ($value$plusargs("UVML_FILE_BASE_DIR_TEST_RESULTS=%s", cli_arg_val)) begin
+         if ($value$plusargs(`UVML_FILE_CLI_ARG_BASE_DIR_TEST_RESULTS, cli_arg_val)) begin
             `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
          end
          else begin
@@ -395,7 +395,7 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
       end
       
      UVML_FILE_BASE_DIR_DV : begin
-         if ($value$plusargs("UVML_FILE_BASE_DIR_DV=%s", cli_arg_val)) begin
+         if ($value$plusargs(`UVML_FILE_CLI_ARG_BASE_DIR_DV, cli_arg_val)) begin
             `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
          end
          else begin
@@ -404,7 +404,7 @@ function string uvml_file_c::get_cli_arg(uvml_file_base_dir_enum base_dir);
       end
       
      UVML_FILE_BASE_DIR_RTL : begin
-         if ($value$plusargs("UVML_FILE_BASE_DIR_RTL=%s", cli_arg_val)) begin
+         if ($value$plusargs(`UVML_FILE_CLI_ARG_BASE_DIR_RTL, cli_arg_val)) begin
             `uvm_info("FILE", $sformatf("Value for %s is %s", final_arg, cli_arg_val), UVM_DEBUG)
          end
          else begin

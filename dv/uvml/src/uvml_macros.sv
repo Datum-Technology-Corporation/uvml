@@ -37,4 +37,24 @@
    `uvm_info("TIME", {"Default watchdog field '", `uvml_stringify(PARAM), "' set to '", $sformatf("%0d", VALUE), "'"}, UVM_NONE) \
 
 
+`ifndef UVML_FILE_CLI_ARG_BASE_DIR_SIM
+   `define UVML_FILE_CLI_ARG_BASE_DIR_SIM "UVML_FILE_BASE_DIR_SIM=%s"
+`endif
+`ifndef UVML_FILE_CLI_ARG_BASE_DIR_TB
+   `define UVML_FILE_CLI_ARG_BASE_DIR_TB "UVML_FILE_BASE_DIR_TB=%s"
+`endif
+`ifndef UVML_FILE_CLI_ARG_BASE_DIR_TESTS
+   `define UVML_FILE_CLI_ARG_BASE_DIR_TESTS "UVML_FILE_BASE_DIR_TESTS=%s"
+`endif
+`ifndef UVML_FILE_CLI_ARG_BASE_DIR_TEST_RESULTS
+   `define UVML_FILE_CLI_ARG_BASE_DIR_TEST_RESULTS "UVML_FILE_BASE_DIR_TEST_RESULTS=%s"
+`endif
+`ifndef UVML_FILE_CLI_ARG_BASE_DIR_DV
+   `define UVML_FILE_CLI_ARG_BASE_DIR_DV "UVML_FILE_BASE_DIR_DV=%s"
+`endif
+`ifndef UVML_FILE_CLI_ARG_BASE_DIR_RTL
+   `define UVML_FILE_CLI_ARG_BASE_DIR_RTL "UVML_FILE_BASE_DIR_RTL=%s"
+`endif
+
+
 `endif // __UVML_MACROS_SV__
