@@ -18,8 +18,8 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 
 # Management
 
-| **[Issues](https://github.com/Datum-Technology-Corporation/uvml/issues)** | **[Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)** |
-| **[Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions)** | **[Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki)** |
+| **[Issues](https://github.com/Datum-Technology-Corporation/uvml/issues)** | **[Discussions](https://github.com/Datum-Technology-Corporation/uvml/discussions)** |
+| **[Projects](https://github.com/Datum-Technology-Corporation/uvml/projects)** | **[Wiki](https://github.com/Datum-Technology-Corporation/uvml/wiki)** |
 
 
 # Metrics
