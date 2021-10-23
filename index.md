@@ -6,7 +6,7 @@
 ----------------
 
 ## About
-The [Moore.io](www.mooreio.com) UVM Extensions Library is *the* must-have library in all your digital design simulations.  This project consists of the library (`uvml_pkg`), the self-testing agent (`uvma_st_pkg`), the self-testing UVM environment (`uvme_st_pkg`) and the test bench (`uvmt_st_pkg`) to verify the library against itself.
+The [Moore.io](https://www.mooreio.com) UVM Extensions Library is *the* must-have library in all your digital design simulations.  This project consists of the library (`uvml_pkg`), the self-testing agent (`uvma_st_pkg`), the self-testing UVM environment (`uvme_st_pkg`) and the test bench (`uvmt_st_pkg`) to verify the library against itself.
 
 
 ## Downloads
