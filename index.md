@@ -1,7 +1,5 @@
 # Home Page
 
-----------------
-
 ## [Get Latest Release](TODO)
 ### [View Documentation online](TODO)
 
