@@ -32,6 +32,7 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) | [Functional Coverage Report](TODO) |
 | [Release Regression Test Report](TODO) | [Regression Test Report](TODO) | [Regression Test Report](TODO) |
 
+----------------
 
 ## News
 ### 2021/10/22 - Hello, World!
