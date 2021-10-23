@@ -14,7 +14,7 @@
 # Launched from uvml project sim dir
 ./setup_project.py
 source ./setup_terminal.sh
-dvm cpel uvmt_clk_st
-dvm sim uvmt_clk_st -t active -s 1 -c
-dvm results uvmt_clk_st results
+dvm cpel uvmt_st
+dvm sim uvmt_st -t traffic -s 1 -c
+dvm results uvmt_st results
 #dvm cov uvmt_st
