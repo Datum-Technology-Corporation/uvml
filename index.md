@@ -1,4 +1,4 @@
-# [Get Latest Release](TODO) (v1.0 Beta 0)
+# [Get Latest Release](TODO)
 ## [View Documentation online](TODO)
 
 # About
