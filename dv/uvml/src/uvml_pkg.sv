@@ -41,6 +41,7 @@ package uvml_pkg;
    // Components
    `include "uvml_hrtbt_mon.sv"
    `include "uvml_watchdog.sv"
+   `include "uvml_dly_line.sv"
    `include "uvml_mon.sv"
    `include "uvml_sqr.sv"
    `include "uvml_vsqr.sv"
