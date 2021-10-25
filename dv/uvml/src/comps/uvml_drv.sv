@@ -29,7 +29,7 @@ class uvml_drv_c #(
    
    
    
-   `uvm_component_utils_begin(uvml_drv_c)
+   `uvm_component_param_utils_begin(uvml_drv_c#(.REQ(REQ), .RSP(RSP)))
       // UVM Field Util Macros
    `uvm_component_utils_end
    

@@ -18,7 +18,7 @@
  * TODO Describe uvml_dly_line_c
  */
 class uvml_dly_line_c #(
-   type T_TRN
+   type T_TRN = uvm_sequence_item
 ) extends uvm_component;
    
    int unsigned  duration; ///< 
@@ -29,7 +29,7 @@ class uvml_dly_line_c #(
    uvm_analysis_port    #(T_TRN)  out_ap   ; ///< 
    
    
-   `uvm_component_utils_begin(uvml_dly_line_c)
+   `uvm_component_param_utils_begin(uvml_dly_line_c#(.T_TRN(T_TRN)))
       `uvm_field_int(duration, UVM_DEFAULT)
    `uvm_component_utils_end
    

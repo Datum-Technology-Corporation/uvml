@@ -21,18 +21,19 @@
 class uvme_st_env_c extends uvml_env_c;
    
    // Objects
-   uvme_st_cfg_c    cfg  ;
-   uvme_st_cntxt_c  cntxt;
+   uvme_st_cfg_c    cfg  ; ///< 
+   uvme_st_cntxt_c  cntxt; ///< 
    
    // Agents
-   uvma_st_agent_c  tx_agent;
-   uvma_st_agent_c  rx_agent;
+   uvma_st_agent_c  tx_agent; ///< 
+   uvma_st_agent_c  rx_agent; ///< 
    
    // Components
-   uvme_st_cov_model_c  cov_model ;
-   uvme_st_prd_c        predictor ;
-   uvme_st_sb_c         sb        ;
-   uvme_st_vsqr_c       vsequencer;
+   uvme_st_cov_model_c                   cov_model ; ///< 
+   uvme_st_prd_c                         predictor ; ///< 
+   uvme_st_sb_c                          sb        ; ///< 
+   uvme_st_vsqr_c                        vsequencer; ///< 
+   uvml_dly_line_c #(uvma_st_mon_trn_c)  dly_line  ; ///< 
    
    
    `uvm_component_utils_begin(uvme_st_env_c)
@@ -209,8 +210,9 @@ endfunction: create_agents
 function void uvme_st_env_c::create_env_components();
    
    if (cfg.scoreboarding_enabled) begin
-      predictor = uvme_st_prd_c::type_id::create("predictor", this);
-      sb        = uvme_st_sb_c ::type_id::create("sb"       , this);
+      predictor = uvme_st_prd_c                       ::type_id::create("predictor", this);
+      sb        = uvme_st_sb_c                        ::type_id::create("sb"       , this);
+      dly_line  = uvml_dly_line_c #(uvma_st_mon_trn_c)::type_id::create("dly_line" , this);
    end
    
 endfunction: create_env_components
@@ -241,7 +243,9 @@ endfunction: connect_predictor
 function void uvme_st_env_c::connect_scoreboard();
    
    // Connect agent -> scoreboard
-   rx_agent.mon_ap.connect(sb.act_export);
+   dly_line.set_duration(100);
+   dly_line.out_ap.connect(sb      .act_export);
+   rx_agent.mon_ap.connect(dly_line.in_export );
    
    // Connect predictor -> scoreboard
    predictor.out_ap.connect(sb.exp_export);
