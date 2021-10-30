@@ -14,7 +14,7 @@
 # Launched from uvml project sim dir
 ./setup_project.py
 source ./setup_terminal.sh
-../tools/dvm/src/dvm.py cpel uvmt_st
-../tools/dvm/src/dvm.py sim uvmt_st -t traffic -s 1 -c
-../tools/dvm/src/dvm.py results uvmt_st results
-#../tools/dvm/src/dvm.py cov uvmt_st
+../tools/.imports/mio/mio.py cpel uvmt_st
+../tools/.imports/mio/mio.py sim uvmt_st -t traffic -s 1 -c
+../tools/.imports/mio/mio.py results uvmt_st results
+#../tools/.imports/mio/mio.py cov uvmt_st

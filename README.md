@@ -10,7 +10,6 @@ The Moore.io UVM Extensions Library is *the* must-have library in all your digit
 > * uvmt_st
 * RTL
 * Tools
-> * dvm
 
 
 # Simulation

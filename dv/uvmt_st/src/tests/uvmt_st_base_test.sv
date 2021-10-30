@@ -87,17 +87,6 @@ class uvmt_st_base_test_c extends uvml_test_c;
    extern virtual task reset_phase(uvm_phase phase);
    
    /**
-    * Prints out start of phase banners.
-    */
-   extern virtual function void phase_started(uvm_phase phase);
-   
-   /**
-    * Indicates to the test bench (uvmt_st_tb) that the test has completed.
-    * This is done by checking the properties of the phase argument.
-    */
-   extern virtual function void phase_ended(uvm_phase phase);
-   
-   /**
     * Retrieves clknrst_gen_vif from UVM configuration database.
     */
    extern function void retrieve_clknrst_gen_vif();
@@ -137,11 +126,6 @@ class uvmt_st_base_test_c extends uvml_test_c;
     * Creates additional (non-environment) components (and objects).
     */
    extern function void create_components();
-   
-   /**
-    * Prints overlined and underlined text in uppercase.
-    */
-   extern function void print_banner(string text);
    
    /**
     * Starts clock generation via clknrst_gen_vif functions.
@@ -210,27 +194,6 @@ task uvmt_st_base_test_c::reset_phase(uvm_phase phase);
 endtask : reset_phase
 
 
-function void uvmt_st_base_test_c::phase_started(uvm_phase phase);
-   
-   string  phase_name = phase.get_name();
-   super.phase_started(phase);
-   print_banner($sformatf("start of %s phase", phase_name));
-   
-endfunction : phase_started
-
-
-function void uvmt_st_base_test_c::phase_ended(uvm_phase phase);
-   
-   super.phase_ended(phase);
-   
-   if (phase.is(uvm_final_phase::get())) begin
-      uvm_config_db#(bit)::set(null, "", "sim_finished", 1);
-      print_banner("test finished");
-   end
-   
-endfunction : phase_ended
-
-
 function void uvmt_st_base_test_c::retrieve_clknrst_gen_vif();
    
    if (!uvm_config_db#(virtual uvmt_st_clknrst_gen_if)::get(this, "", "clknrst_gen_vif", clknrst_gen_vif)) begin
@@ -295,16 +258,6 @@ function void uvmt_st_base_test_c::create_components();
    // TODO Implement uvmt_st_base_test_c::create_components()
    
 endfunction : create_components
-
-
-function void uvmt_st_base_test_c::print_banner(string text);
-   
-   $display("");
-   $display("*******************************************************************************");
-   $display(text.toupper());
-   $display("*******************************************************************************");
-   
-endfunction : print_banner
 
 
 task uvmt_st_base_test_c::start_clk();
