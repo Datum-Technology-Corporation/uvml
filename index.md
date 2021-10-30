@@ -22,7 +22,7 @@ The [Moore.io](https://www.mooreio.com) UVM Extensions Library is *the* must-hav
 | [Source Code](https://mooreio.com/packages/uvml.tgz) | Source Code (Coming Soon) | Source Code (Coming Soon) |
 | Documentation (Coming Soon) | Documentation (Coming Soon) | Documentation (Coming Soon) |
 
-> **[View All Releases](Coming Soon)**
+> **[View All Releases](releases.md)**
 
 
 
