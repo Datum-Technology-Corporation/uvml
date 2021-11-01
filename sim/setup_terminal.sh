@@ -27,8 +27,8 @@ export PROJECT_TOOLS_IMPORT_DIR=${PROJECT_TOOLS_DIR}/.imports
 ### Tools ###
 # Local
 # Imports
-export TOOLS_MIO_PATH=${PROJECT_TOOLS_DIR}/.imports/mio
-alias mio="${TOOLS_MIO_PATH}/mio.py"
+export MIO_HOME=${PROJECT_TOOLS_DIR}/.imports/mio
+alias mio="${MIO_HOME}/src/mio.py"
 
 
 ### RTL ###
@@ -48,4 +48,4 @@ export UVM_HOME=${PROJECT_DV_IMPORTS_DIR}/uvm/src
 export DV_UVM_SRC_PATH=${PROJECT_DV_IMPORTS_DIR}/uvm/src
 
 # PATH
-export PATH=${PATH}:${TOOLS_MIO_SRC_PATH}
+export PATH=${PATH}:${MIO_HOME}/src/src
