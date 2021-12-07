@@ -49,6 +49,9 @@ package uvmt_st_pkg;
    `include "uvmt_st_test_cfg.sv"
    `include "uvmt_st_base_test.sv"
    `include "uvmt_st_traffic_test.sv"
+   `include "uvmt_st_file_read_test.sv"
+   `include "uvmt_st_file_write_test.sv"
+   `include "uvmt_st_vector_file_test.sv"
    
 endpackage : uvmt_st_pkg
 

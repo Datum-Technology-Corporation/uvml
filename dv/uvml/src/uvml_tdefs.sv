@@ -14,6 +14,10 @@
 `define __UVML_TDEFS_SV__
 
 
+typedef bit            uvml_bit_array_t [];
+typedef byte unsigned  uvml_byte_array_t[];
+typedef int            uvml_int_array_t [];
+
 typedef enum {
    UVML_FILE_BASE_DIR_DEFAULT     ,
    UVML_FILE_BASE_DIR_CUSTOM      ,

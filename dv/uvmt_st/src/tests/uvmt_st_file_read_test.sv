@@ -31,11 +31,6 @@ class uvmt_st_file_read_test_c extends uvmt_st_base_test_c;
    extern function new(string name="uvmt_st_file_read_test", uvm_component parent=null);
    
    /**
-    * Creates object(s).
-    */
-   extern virtual function void create_objects();
-   
-   /**
     * Reads back file and checks contents.
     */
    extern virtual task main_phase(uvm_phase phase);
@@ -50,15 +45,6 @@ function uvmt_st_file_read_test_c::new(string name="uvmt_st_file_read_test", uvm
 endfunction : new
 
 
-function void uvmt_st_file_read_test_c::create_objects();
-   
-   file = uvml_file_c::type_id::create("file");
-   file.set_base_dir(UVML_BASE_DIR_TB     );
-   file.set_path    ("files/test_file.txt");
-   
-endfunction : create_objects
-
-
 task uvmt_st_file_read_test_c::main_phase(uvm_phase phase);
    
    string  readback = "";
@@ -66,16 +52,20 @@ task uvmt_st_file_read_test_c::main_phase(uvm_phase phase);
    super.main_phase(phase);
    
    phase.raise_objection(this);
-   file.open(UVML_FILE_ACCESS_READ);
+   
+   file = uvml_file_c::type_id::create("file");
+   file.set_base_dir(UVML_FILE_BASE_DIR_TESTS);
+   file.open(UVM_READ, "files/read_test.txt");
    readback = file.read_line();
-   readback = {readback, file.read_line()};
    file.close();
+   
    if (readback != "abcdef") begin
       `uvm_error("TEST", $sformatf("File contents (%s) do not match expectations (abcdef)", readback))
    end
    else begin
       `uvm_info("TEST", "File contents match expectations", UVM_NONE)
    end
+   
    phase.drop_objection (this);
    
 endtask : main_phase

@@ -32,6 +32,7 @@ package uvml_pkg;
    
    // Objects
    `include "uvml_file.sv"
+   `include "uvml_vector_file.sv"
    `include "uvml_version.sv"
    `include "uvml_cfg.sv"
    `include "uvml_cntxt.sv"

@@ -12,9 +12,12 @@
 
 
 # Launched from uvml project sim dir
-./setup_project.py
+python ./setup_project.py
 source ./setup_terminal.sh
 ../tools/.imports/mio/src/mio.py cpel uvmt_st
 ../tools/.imports/mio/src/mio.py sim uvmt_st -t traffic -s 1 -c
+../tools/.imports/mio/src/mio.py sim uvmt_st -t file_read -s 1 -c
+../tools/.imports/mio/src/mio.py sim uvmt_st -t file_write -s 1 -c
+../tools/.imports/mio/src/mio.py sim uvmt_st -t vector_file -s 1 -c
 ../tools/.imports/mio/src/mio.py results uvmt_st results
 ../tools/.imports/mio/src/mio.py cov uvmt_st
