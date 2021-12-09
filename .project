@@ -66,7 +66,7 @@
 		</variable>
 		<variable>
 			<name>DV_UVM_SRC_PATH</name>
-			<value>$%7BPROJECT_LOC%7D/dv/uvm/src</value>
+			<value>$%7BPROJECT_LOC%7D/dv/.imports/uvm/src</value>
 		</variable>
 	</variableList>
 </projectDescription>

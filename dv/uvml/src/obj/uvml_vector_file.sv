@@ -35,22 +35,22 @@ class uvml_vector_file_c extends uvml_file_c;
    /**
     * TODO Describe uvml_vector_file_c::get_next_line_bits()
     */
-   extern function uvml_bit_array_t get_next_line_bits(uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_line_bits(uvm_radix_enum radix, output uvml_bit_array_t bits);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_line_bytes()
     */
-   extern function uvml_byte_array_t get_next_line_bytes(uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_line_bytes(uvm_radix_enum radix, output uvml_byte_array_t bytes);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_line_ints()
     */
-   extern function uvml_int_array_t get_next_line_ints(uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_line_ints(uvm_radix_enum radix, output uvml_int_array_t ints);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_lines_bits()
     */
-   extern function uvml_bit_array_t get_next_lines_bits(int unsigned num_lines, uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_lines_bits(int unsigned num_lines, uvm_radix_enum radix, output uvml_bit_array_t bits);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_lines_bytes()
@@ -60,27 +60,27 @@ class uvml_vector_file_c extends uvml_file_c;
    /**
     * TODO Describe uvml_vector_file_c::get_next_lines_ints()
     */
-   extern function uvml_int_array_t get_next_lines_ints(int unsigned num_lines, uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_lines_ints(int unsigned num_lines, uvm_radix_enum radix, output uvml_int_array_t ints);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_block_bits()
     */
-   extern function uvml_bit_array_t get_next_block_bits(int unsigned num_bits, uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_block_bits(int unsigned num_bits, uvm_radix_enum radix, output uvml_bit_array_t bits);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_block_bytes()
     */
-   extern function uvml_byte_array_t get_next_block_bytes(int unsigned num_bytes, uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_block_bytes(int unsigned num_bytes, uvm_radix_enum radix, output uvml_byte_array_t bytes);
    
    /**
     * TODO Describe uvml_vector_file_c::get_next_block_ints()
     */
-   extern function uvml_int_array_t get_next_block_ints(int unsigned num_ints, uvm_radix_enum radix=UVM_HEX);
+   extern function void get_next_block_ints(int unsigned num_ints, uvm_radix_enum radix, output uvml_int_array_t ints);
    
    /**
     * TODO Describe uvml_vector_file_c::pack_data()
     */
-   extern function void pack_data(string text, uvm_radix_enum radix);
+   extern function void pack_data(string text, uvm_radix_enum radix, bit reverse_nibble=0);
    
    /**
     * TODO Describe uvml_vector_file_c::reset()
@@ -102,72 +102,44 @@ function uvml_vector_file_c::new(string name="uvml_vector_file");
 endfunction : new
 
 
-function uvml_bit_array_t uvml_vector_file_c::get_next_line_bits(uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_line_bits(uvm_radix_enum radix, output uvml_bit_array_t bits);
    
-   //reset();
-   //pack_data(reverse_str(read_line()), radix);
-   //get_next_line_bits = new[bits_used];
-   //foreach (get_next_line_bits[ii]) begin
-   //   get_next_line_bits[ii] = data[ii];
-   //end
+   get_next_lines_bits(1, radix, bits);
    
 endfunction : get_next_line_bits
 
 
-function uvml_byte_array_t uvml_vector_file_c::get_next_line_bytes(uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_line_bytes(uvm_radix_enum radix, output uvml_byte_array_t bytes);
    
-   //byte  byte_array[];
-   //
-   //reset();
-   //pack_data(reverse_str(read_line()), radix);
-   //byte_array = new[bits_used/8];
-   //foreach (byte_array[ii]) begin
-   //   byte_array[ii][0] = data[ii*8+0];
-   //   byte_array[ii][1] = data[ii*8+1];
-   //   byte_array[ii][2] = data[ii*8+2];
-   //   byte_array[ii][3] = data[ii*8+3];
-   //   byte_array[ii][4] = data[ii*8+4];
-   //   byte_array[ii][5] = data[ii*8+5];
-   //   byte_array[ii][6] = data[ii*8+6];
-   //   byte_array[ii][7] = data[ii*8+7];
-   //end
-   //
-   //get_next_line_bytes = new[byte_array.size()];
-   //foreach (get_next_line_bytes[ii]) begin
-   //   get_next_line_bytes[ii] = byte_array[ii];
-   //end
+   get_next_lines_bytes(1, radix, bytes);
    
 endfunction : get_next_line_bytes
 
 
-function uvml_int_array_t uvml_vector_file_c::get_next_line_ints(uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_line_ints(uvm_radix_enum radix, output uvml_int_array_t ints);
    
-   //reset();
-   //pack_data(reverse_str(read_line()), radix);
-   //// TODO Implement uvml_vector_file_c::get_next_line_ints()
+   get_next_lines_ints(1, radix, ints);
    
 endfunction : get_next_line_ints
 
 
-function uvml_bit_array_t uvml_vector_file_c::get_next_lines_bits(int unsigned num_lines, uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_lines_bits(int unsigned num_lines, uvm_radix_enum radix, output uvml_bit_array_t bits);
    
-   //string  data_text = "";
-   //string  line;
-   //
-   //reset();
-   //repeat (num_lines) begin
-   //   line = read_line();
-   //   line = line.substr(0, line.len()-2);
-   //   line = reverse_str(line);
-   //   data_text = {line, data_text};
-   //end
-   //pack_data(data_text, radix);
-   //get_next_lines_bits = new[bits_used];
-   //foreach (get_next_lines_bits[ii]) begin
-   //   get_next_lines_bits[ii] = data[ii];
-   //end
-   //
-   //`uvm_info("VECTOR_FILE", $sformatf("Final bit count is %0d", get_next_lines_bits.size()), UVM_NONE/*UVM_DEBUG*/)
+   string  data_text = "";
+   string  line;
+   
+   reset();
+   repeat (num_lines) begin
+      line = read_line();
+      line = line.substr(0, line.len()-2);
+      line = reverse_str(line);
+      data_text = {line, data_text};
+   end
+   pack_data(data_text, radix, 1);
+   bits = new[bits_used];
+   foreach (bits[ii]) begin
+      bits[ii] = data[ii];
+   end
    
 endfunction : get_next_lines_bits
 
@@ -206,7 +178,7 @@ function void uvml_vector_file_c::get_next_lines_bytes(int unsigned num_lines, u
 endfunction : get_next_lines_bytes
 
 
-function uvml_int_array_t uvml_vector_file_c::get_next_lines_ints(int unsigned num_lines, uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_lines_ints(int unsigned num_lines, uvm_radix_enum radix, output uvml_int_array_t ints);
    
    //string  data_text = "";
    //string  line;
@@ -226,7 +198,7 @@ function uvml_int_array_t uvml_vector_file_c::get_next_lines_ints(int unsigned n
 endfunction : get_next_lines_ints
 
 
-function uvml_bit_array_t uvml_vector_file_c::get_next_block_bits(int unsigned num_bits, uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_block_bits(int unsigned num_bits, uvm_radix_enum radix, output uvml_bit_array_t bits);
    
    //reset();
    //while (bits_used < num_bits) begin
@@ -239,7 +211,7 @@ function uvml_bit_array_t uvml_vector_file_c::get_next_block_bits(int unsigned n
 endfunction : get_next_block_bits
 
 
-function uvml_byte_array_t uvml_vector_file_c::get_next_block_bytes(int unsigned num_bytes, uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_block_bytes(int unsigned num_bytes, uvm_radix_enum radix, output uvml_byte_array_t bytes);
    
    //reset();
    //while (bits_used < (num_bytes*8)) begin
@@ -252,7 +224,7 @@ function uvml_byte_array_t uvml_vector_file_c::get_next_block_bytes(int unsigned
 endfunction : get_next_block_bytes
 
 
-function uvml_int_array_t uvml_vector_file_c::get_next_block_ints(int unsigned num_ints, uvm_radix_enum radix=UVM_HEX);
+function void uvml_vector_file_c::get_next_block_ints(int unsigned num_ints, uvm_radix_enum radix, output uvml_int_array_t ints);
    
    //reset();
    //while (bits_used < (num_ints*32)) begin
@@ -265,7 +237,7 @@ function uvml_int_array_t uvml_vector_file_c::get_next_block_ints(int unsigned n
 endfunction : get_next_block_ints
 
 
-function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix);
+function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, bit reverse_nibble=0);
    
    int           scan;
    string        char;
@@ -387,10 +359,18 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix);
             char = text.substr(ii, ii);
             scan = $sscanf(char, "%h", hex_val);
             if (scan) begin
-               data[bits_used++] = hex_val[0];
-               data[bits_used++] = hex_val[1];
-               data[bits_used++] = hex_val[2];
-               data[bits_used++] = hex_val[3];
+               if (reverse_nibble) begin
+                  data[bits_used++] = hex_val[3];
+                  data[bits_used++] = hex_val[2];
+                  data[bits_used++] = hex_val[1];
+                  data[bits_used++] = hex_val[0];
+               end
+               else begin
+                  data[bits_used++] = hex_val[0];
+                  data[bits_used++] = hex_val[1];
+                  data[bits_used++] = hex_val[2];
+                  data[bits_used++] = hex_val[3];
+               end
             end
          end
       end
