@@ -132,10 +132,10 @@ function void uvml_vector_file_c::get_next_lines_bits(int unsigned num_lines, uv
    repeat (num_lines) begin
       line = read_line();
       line = line.substr(0, line.len()-2);
-      line = reverse_str(line);
+      //line = reverse_str(line);
       data_text = {line, data_text};
    end
-   pack_data(data_text, radix, 1);
+   pack_data(data_text, radix, 0);
    bits = new[bits_used];
    foreach (bits[ii]) begin
       bits[ii] = data[ii];
