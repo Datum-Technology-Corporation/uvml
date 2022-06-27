@@ -30,7 +30,7 @@ dependencies:
   - { type: "DV", name: "uvm", repo-uri: "https://github.com/Datum-Technology-Corporation/uvm.git", repo-branch: "main", repo-path: "dv/uvm"}
 
 hdl-src:
-  top-constructs: ["uvmt_st_tb", "uvml_logs_sim_summary"]
+  top-constructs: ["uvmt_st_tb"]
   directories: [".", "tb", "tests"]
   test-paths: ["tests"]
   test-name-template: "uvmt_st_{{ name }}_test_c"
