@@ -1,12 +1,5 @@
 // Copyright 2021 Datum Technology Corporation
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
-// Licensed under the Solderpad Hardware License v 2.1 (the "License"); you may not use this file except in compliance
-// with the License, or, at your option, the Apache License version 2.0.  You may obtain a copy of the License at
-//                                        https://solderpad.org/licenses/SHL-2.1/
-// Unless required by applicable law or agreed to in writing, any work distributed under the License is distributed on
-// an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the License for the
-// specific language governing permissions and limitations under the License.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -19,119 +12,124 @@
  * @warning It is not recommended to combine calls to get_next_line() and get_next_block()
  */
 class uvml_vector_file_c extends uvml_file_c;
-   
+
    uvm_pack_bitstream_t  data     ;
    int unsigned          bits_used;
-   
-   
+
+
    `uvm_object_utils(uvml_vector_file_c)
-   
-   
+
+
    /**
     * Default constructor.
     */
    extern function new(string name="uvml_vector_file");
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_line_bits()
     */
    extern function void get_next_line_bits(uvm_radix_enum radix, output uvml_bit_array_t bits);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_line_bytes()
     */
    extern function void get_next_line_bytes(uvm_radix_enum radix, output uvml_byte_array_t bytes);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_line_ints()
     */
    extern function void get_next_line_ints(uvm_radix_enum radix, output uvml_int_array_t ints);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_lines_bits()
     */
    extern function void get_next_lines_bits(int unsigned num_lines, uvm_radix_enum radix, output uvml_bit_array_t bits);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_lines_bytes()
     */
    extern function void get_next_lines_bytes(int unsigned num_lines, uvm_radix_enum radix, output uvml_byte_array_t bytes);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_lines_ints()
     */
    extern function void get_next_lines_ints(int unsigned num_lines, uvm_radix_enum radix, output uvml_int_array_t ints);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_block_bits()
     */
    extern function void get_next_block_bits(int unsigned num_bits, uvm_radix_enum radix, output uvml_bit_array_t bits);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_block_bytes()
     */
    extern function void get_next_block_bytes(int unsigned num_bytes, uvm_radix_enum radix, output uvml_byte_array_t bytes);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::get_next_block_ints()
     */
    extern function void get_next_block_ints(int unsigned num_ints, uvm_radix_enum radix, output uvml_int_array_t ints);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::pack_data()
     */
    extern function void pack_data(string text, uvm_radix_enum radix, bit reverse_nibble=0);
-   
+
    /**
     * TODO Describe uvml_vector_file_c::reset()
     */
    extern function void reset();
-   
+
    /**
     * TODO Describe uvml_vector_file_c::reverse_str()
     */
    extern function string reverse_str(string text);
-   
+
 endclass : uvml_vector_file_c
 
 
 function uvml_vector_file_c::new(string name="uvml_vector_file");
-   
+
    super.new(name);
-   
+
 endfunction : new
 
 
 function void uvml_vector_file_c::get_next_line_bits(uvm_radix_enum radix, output uvml_bit_array_t bits);
-   
+
    get_next_lines_bits(1, radix, bits);
-   
+
 endfunction : get_next_line_bits
 
 
 function void uvml_vector_file_c::get_next_line_bytes(uvm_radix_enum radix, output uvml_byte_array_t bytes);
-   
+
    get_next_lines_bytes(1, radix, bytes);
-   
+
 endfunction : get_next_line_bytes
 
 
 function void uvml_vector_file_c::get_next_line_ints(uvm_radix_enum radix, output uvml_int_array_t ints);
-   
+
    get_next_lines_ints(1, radix, ints);
-   
+
 endfunction : get_next_line_ints
 
 
 function void uvml_vector_file_c::get_next_lines_bits(int unsigned num_lines, uvm_radix_enum radix, output uvml_bit_array_t bits);
-   
+
    string  data_text = "";
    string  line;
-   
+
    reset();
    repeat (num_lines) begin
       line = read_line();
-      line = line.substr(0, line.len()-2);
+      if (is_eof()) begin
+         line = line.substr(0, line.len()-1);
+      end
+      else begin
+         line = line.substr(0, line.len()-2);
+      end
       //line = reverse_str(line);
       data_text = {line, data_text};
    end
@@ -140,20 +138,25 @@ function void uvml_vector_file_c::get_next_lines_bits(int unsigned num_lines, uv
    foreach (bits[ii]) begin
       bits[ii] = data[ii];
    end
-   
+
 endfunction : get_next_lines_bits
 
 
 function void uvml_vector_file_c::get_next_lines_bytes(int unsigned num_lines, uvm_radix_enum radix, output uvml_byte_array_t bytes);
-   
+
    string  data_text = "";
    string  line;
    byte    byte_array[];
-   
+
    reset();
    repeat (num_lines) begin
       line = read_line();
-      line = line.substr(0, line.len()-2);
+      if (is_eof()) begin
+         line = line.substr(0, line.len()-1);
+      end
+      else begin
+         line = line.substr(0, line.len()-2);
+      end
       line = reverse_str(line);
       data_text = {line, data_text};
    end
@@ -169,17 +172,17 @@ function void uvml_vector_file_c::get_next_lines_bytes(int unsigned num_lines, u
       byte_array[ii][6] = data[ii*8+2];
       byte_array[ii][7] = data[ii*8+3];
    end
-   
+
    bytes = new[byte_array.size()];
    foreach (bytes[ii]) begin
       bytes[ii] = byte_array[ii];
    end
-   
+
 endfunction : get_next_lines_bytes
 
 
 function void uvml_vector_file_c::get_next_lines_ints(int unsigned num_lines, uvm_radix_enum radix, output uvml_int_array_t ints);
-   
+
    //string  data_text = "";
    //string  line;
    //
@@ -194,12 +197,12 @@ function void uvml_vector_file_c::get_next_lines_ints(int unsigned num_lines, uv
    //// TODO Implement uvml_vector_file_c::get_next_lines_ints()
    //
    //`uvm_info("VECTOR_FILE", $sformatf("Final int count is %0d", get_next_lines_ints.size()), UVM_NONE/*UVM_DEBUG*/)
-   
+
 endfunction : get_next_lines_ints
 
 
 function void uvml_vector_file_c::get_next_block_bits(int unsigned num_bits, uvm_radix_enum radix, output uvml_bit_array_t bits);
-   
+
    //reset();
    //while (bits_used < num_bits) begin
    //   pack_data(read_line(), radix);
@@ -207,12 +210,12 @@ function void uvml_vector_file_c::get_next_block_bits(int unsigned num_bits, uvm
    //
    //get_next_block_bits = new[num_bits];
    //// TODO Implement uvml_vector_file_c::get_next_block_bits()
-   
+
 endfunction : get_next_block_bits
 
 
 function void uvml_vector_file_c::get_next_block_bytes(int unsigned num_bytes, uvm_radix_enum radix, output uvml_byte_array_t bytes);
-   
+
    //reset();
    //while (bits_used < (num_bytes*8)) begin
    //   pack_data(read_line(), radix);
@@ -220,12 +223,12 @@ function void uvml_vector_file_c::get_next_block_bytes(int unsigned num_bytes, u
    //
    //get_next_block_bytes = new[num_bytes];
    //// TODO Implement uvml_vector_file_c::get_next_block_bytes()
-   
+
 endfunction : get_next_block_bytes
 
 
 function void uvml_vector_file_c::get_next_block_ints(int unsigned num_ints, uvm_radix_enum radix, output uvml_int_array_t ints);
-   
+
    //reset();
    //while (bits_used < (num_ints*32)) begin
    //   pack_data(read_line(), radix);
@@ -233,12 +236,12 @@ function void uvml_vector_file_c::get_next_block_ints(int unsigned num_ints, uvm
    //
    //get_next_block_ints = new[num_ints];
    //// TODO Implement uvml_vector_file_c::get_next_block_ints()
-   
+
 endfunction : get_next_block_ints
 
 
 function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, bit reverse_nibble=0);
-   
+
    int           scan;
    string        char;
    int unsigned  text_len = text.len();
@@ -246,9 +249,9 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, b
    bit [02:00]   oct_val;
    bit [03:00]   hex_val;
    int           dec_val;
-   
+
    `uvm_info("VECTOR_FILE", $sformatf("Input text to pack_data() is '%s'", text), UVM_DEBUG)
-   
+
    case (radix)
       UVM_BIN: begin
          for (int ii=(text_len-1); ii>=0; ii--) begin
@@ -259,7 +262,7 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, b
             end
          end
       end
-      
+
       UVM_DEC: begin
          for (int ii=(text_len-1); ii>=0; ii--) begin
             char = text.substr(ii, ii);
@@ -300,7 +303,7 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, b
             end
          end
       end
-      
+
       UVM_UNSIGNED: begin
          for (int ii=(text_len-1); ii>=0; ii--) begin
             char = text.substr(ii, ii);
@@ -341,7 +344,7 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, b
             end
          end
       end
-      
+
       UVM_OCT: begin
          for (int ii=(text_len-1); ii>=0; ii--) begin
             char = text.substr(ii, ii);
@@ -353,7 +356,7 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, b
             end
          end
       end
-      
+
       UVM_HEX: begin
          for (int ii=(text_len-1); ii>=0; ii--) begin
             char = text.substr(ii, ii);
@@ -374,33 +377,33 @@ function void uvml_vector_file_c::pack_data(string text, uvm_radix_enum radix, b
             end
          end
       end
-      
+
       default: begin
          `uvm_fatal("VECTOR_FILE", $sformatf("Invalid radix (%s)", radix.name()))
       end
    endcase
-   
+
    `uvm_info("VECTOR_FILE", $sformatf("data after packing: %h", data), UVM_DEBUG)
-   
+
 endfunction : pack_data
 
 
 function void uvml_vector_file_c::reset();
-   
+
    data      = 0;
    bits_used = 0;
-   
+
 endfunction : reset
 
 
 function string uvml_vector_file_c::reverse_str(string text);
-   
+
    reverse_str = "";
-   
+
    for (int ii=(text.len()-1); ii>=0; ii--) begin
       reverse_str = {reverse_str, text.substr(ii,ii)};
    end
-   
+
 endfunction : reverse_str
 
 
