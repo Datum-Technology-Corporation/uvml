@@ -9,6 +9,10 @@
 
 `define uvml_stringify(x) `"x`"
 
+// These are used by the MIO CLI to automatically encrypt IP with any simulator
+`define UVML_ENCRYPT_START
+`define UVML_ENCRYPT_END
+
 `define uvml_hrtbt(ID) \
    uvml_default_hrtbt_mon.heartbeat(this, ID); \
 
