@@ -12,6 +12,6 @@ mio cpel    uvmt_st
 mio sim     uvmt_st -t traffic     -s 1 -c
 mio sim     uvmt_st -t file_read   -s 1 -c
 mio sim     uvmt_st -t file_write  -s 1 -c
-mio sim     uvmt_st -t vector_file -s 1 -c
+#mio sim     uvmt_st -t vector_file -s 1 -c
 mio results uvmt_st results
 mio cov     uvmt_st
