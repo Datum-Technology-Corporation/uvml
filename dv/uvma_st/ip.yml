@@ -21,22 +21,22 @@ ip:
   licenses: ["SHL-2.1"]
 
 structure:
-   scripts-paths : [ "bin"      ]
-   docs-paths    : [ "docs"     ]
-   examples-paths: [ "examples" ]
-   src-paths     : [ "src"      ]
+   scripts-path : "bin"
+   docs-path    : "docs"
+   examples-path: "examples"
+   src-path     : "src"
 
 dependencies:
-  - { type: "DV", name: "uvm", repo-uri: "https://github.com/Datum-Technology-Corporation/uvm.git", repo-branch: "main", repo-path: "dv/uvm" }
+  - { name: "uvm", version: "1.2" }
+#  - { name: "uvml", version: "^" }
 
 hdl-src:
   directories: [".", "comps", "obj", "seq"]
-  tests-name-template: ""
-  flists:
-    metrics : [ "src/uvma_st_pkg.flist"      ]
-    riviera : [ "src/uvma_st_pkg.flist"      ]
-    questa  : [ "src/uvma_st_pkg.flist"      ]
-    vcs     : [ "src/uvma_st_pkg.flist"      ]
-    vivado  : [ "src/uvma_st_pkg.flist.xsim" ]
-    xcelium : [ "src/uvma_st_pkg.flist"      ]
+  flist:
+    metrics : "uvma_st_pkg.flist"
+    riviera : "uvma_st_pkg.flist"
+    questa  : "uvma_st_pkg.flist"
+    vcs     : "uvma_st_pkg.flist"
+    vivado  : "uvma_st_pkg.flist.xsim"
+    xcelium : "uvma_st_pkg.flist"
 

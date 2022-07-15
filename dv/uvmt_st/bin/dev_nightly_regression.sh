@@ -1,14 +1,17 @@
 #! /bin/bash
 ########################################################################################################################
-## Copyright 2021 Datum Technology Corporation
+## Copyright 2021-2022 Datum Technology Corporation
 ## SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
 ########################################################################################################################
 
 
 # Launched from uvml project sim dir
-python ./setup_project.py
-source ./setup_terminal.sh
-../tools/.imports/mio/src/__main__.py cpel uvmt_st
-../tools/.imports/mio/src/__main__.py sim uvmt_st -t traffic -s 1 -c
-../tools/.imports/mio/src/__main__.py results uvmt_st results
-../tools/.imports/mio/src/__main__.py cov uvmt_st
+shopt -s expand_aliases
+source ~/.bashrc
+mio cpel    uvmt_st
+mio sim     uvmt_st -t traffic     -c
+mio sim     uvmt_st -t file_read   -c
+mio sim     uvmt_st -t file_write  -c
+mio sim     uvmt_st -t vector_file -c
+mio results uvmt_st results
+mio cov     uvmt_st

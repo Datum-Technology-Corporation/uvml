@@ -4,10 +4,10 @@
 
 
 // Directories
-+incdir+${DV_UVML_SRC_PATH}
-+incdir+${DV_UVML_SRC_PATH}/comps
-+incdir+${DV_UVML_SRC_PATH}/obj
-+incdir+${DV_UVML_SRC_PATH}/seq
++incdir+${UVML_SRC_PATH}
++incdir+${UVML_SRC_PATH}/comps
++incdir+${UVML_SRC_PATH}/obj
++incdir+${UVML_SRC_PATH}/seq
 
 // Files
-${DV_UVML_SRC_PATH}/uvml_pkg.sv
+${UVML_SRC_PATH}/uvml_pkg.sv

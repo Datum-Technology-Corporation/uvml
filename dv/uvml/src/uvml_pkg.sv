@@ -59,4 +59,7 @@ package uvml_pkg;
 endpackage : uvml_pkg
 
 
+`include "uvml_sim_summary.sv"
+
+
 `endif // __UVML_PKG_SV__

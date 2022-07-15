@@ -1,0 +1,12 @@
+# Copyright 2022 Datum Technology Corporation
+# SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+########################################################################################################################
+
+
+[project]
+name        = "uvml"
+full-name   = "Moore.io UVM Extension Library"
+description = ""
+
+[simulation]
+preferred-simulators = [ "vivado" ]

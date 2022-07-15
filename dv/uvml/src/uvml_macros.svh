@@ -9,6 +9,10 @@
 
 `define uvml_stringify(x) `"x`"
 
+`define UVML_TEXT_COLOR_RED   "\033[31m\033[1m"
+`define UVML_TEXT_COLOR_GREEN "\033[32m\033[1m"
+`define UVML_TEXT_COLOR_RESET "\033[0m"
+
 // These are used by the MIO CLI to automatically encrypt IP with any simulator
 `define UVML_ENCRYPT_START
 `define UVML_ENCRYPT_END
